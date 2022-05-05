@@ -2,11 +2,74 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=.5" />
-</head>
 
+</head>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bgimg {
+  background-image: url('/images/landsend0b.jpg');
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  color: white;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 25px;
+}
+
+.topleft {
+  position: absolute;
+  top: 0;
+  left: 16px;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.middle2 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+hr {
+  margin: auto;
+  width: 40%;
+}
+</style>
 <body>
 
-<img src="/images/landsend0b.jpg">
+<div class="bgimg">
+  <div class="topleft">
+    <p></p>
+  </div>
+  
+  <div class="middle">
+    <h1></h1>
+    <hr>
+    <p></p>
+  </div>
+  <div class="bottomleft">
+    <p></p>
+  </div>
+</div>
 
 </body>
 </html>
