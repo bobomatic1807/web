@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang='en' class=''>
+<html lang="en" >
 
 <head>
 
-  <meta charset='UTF-8'>
-  <title>Robert Hunt Photography</title>
-
-  <meta name="robots" content="noindex">
-
-   
+  <meta charset="UTF-8">
   
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
 
 
-  <style>
-    .slideshow {
+  <title>CodePen - Ken Burns Effect fullscreen without js</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway:300'>
+  
+<style>
+.slideshow {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -35,7 +41,7 @@
           animation-iteration-count: infinite;
   -webkit-animation-duration: 16s;
           animation-duration: 16s;
-  opacity: 5;
+  opacity: 1;
   transform: scale(1.2);
 }
 .slideshow-image:nth-child(1) {
@@ -233,10 +239,10 @@ h1 {
   transform: translate3d(-50%, -50%, 0);
   z-index: 99;
   text-align: center;
-  font-family: Lato, sans-serif;
+  font-family: Raleway, sans-serif;
   font-weight: 300;
   text-transform: uppercase;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
   padding: 1em 2em;
   line-height: 1.5;
@@ -254,11 +260,23 @@ h1 small:last-child {
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   padding-top: 0.5em;
 }
-  </style>
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
 
   
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
 
 </head>
+
 
 <body>
   <h1><small>Photography</small> Robert Hunt <small>huntphotog (at) gmail.com</small></h1>
