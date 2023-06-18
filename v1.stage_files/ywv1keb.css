@@ -1,0 +1,29 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * linotype-sabon:
+ *   - http://typekit.com/eulas/00000000000000003b9b2010
+ *   - http://typekit.com/eulas/00000000000000003b9b2011
+ *
+ * © 2009-2023 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2020-03-31 08:10:21 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=ywv1keb&ht=tk&f=39440.39441&a=5137526&app=typekit&e=css");
+
+@font-face {
+font-family:"linotype-sabon";
+src:url("https://use.typekit.net/af/c572ac/00000000000000003b9b2010/27/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/c572ac/00000000000000003b9b2010/27/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/c572ac/00000000000000003b9b2010/27/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=i4&v=3") format("opentype");
+font-display:auto;font-style:italic;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"linotype-sabon";
+src:url("https://use.typekit.net/af/eb13d2/00000000000000003b9b2011/27/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/eb13d2/00000000000000003b9b2011/27/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/eb13d2/00000000000000003b9b2011/27/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+.tk-linotype-sabon { font-family: "linotype-sabon",sans-serif; }
