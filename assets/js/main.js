@@ -38,6 +38,7 @@
 						images: {
 							'images/pano.jpg': 'center',
 							'images/glacierpoint2.jpg': 'center',
+							'images/nep.jpg': 'center',
 							'images/landsend.jpg': 'center',
 							'images/courthouse1.jpg': 'center'
 						},
