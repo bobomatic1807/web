@@ -45,18 +45,21 @@ input[type='submit']{
 <body>
   <div class="main-contact-form">			
 	
-	<form action="#" method="POST">
-		<label for="Name" class="required">Your Name</label>
-		<input type="text" name="name" class="name" placeholder="Enter name" required>
-		
-		<label for="Email" class="required">Your Email</label>
-		<input type="email" name="email" class="email" placeholder="Enter email" required>
-		
-		<label for="message" class="required">Message</label>
-		<textarea name="message" class="message" placeholder="Enter your message" rows="5" required></textarea>
-		
-		<input name="submit" type="submit" value="Submit">
-	</form>
+	<form
+  action="https://formspree.io/f/xldjvykg"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
 	
 </div>
 </body>
