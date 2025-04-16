@@ -1,28 +1,82 @@
-<!DOCTYPE html>
 <html>
 <head>
 <link href='https://fonts.googleapis.com/css?family=Cormorant SC' rel='stylesheet'>
 <style>
-  body      {
-    font-family: 'Cormorant SC';font-size: 38px;
-    background-color: rgb(112, 120, 114);
+  body { background:rgb(103, 112, 104) }
+form { max-width:420px; margin:50px auto; }
+
+.feedback-input {
+  color:blk;
+  font-family: Cormorant SC;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: white;
+  border:2px solid #fff;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#464e61;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:18px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#CC4949; }
+
+.p2 {
+  font-family: Cormorant SC;
 }
 </style>
     <meta charset="UTF-8" />
     <title>RM Hunt Fine Art</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
-<body><Center>
-<div id="contact">
-        <h2>Inquiries</h2>
-        <div id="contact-form">
-                <form action="https://formspree.io/f/xldjvykg" method="POST">
-                <input type="hidden" name="_subject" value="Contact request from personal website" />
-                <input type="email" name="_replyto" placeholder="Your email" required>
-                <textarea name="message" placeholder="Type your message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    </div>
+
+
+<!------ Include the above in your HEAD tag ---------->
+<body><center>&ensp;
+  <font color="#fff"><p class="p2" style="font-size:36px">R  M Hunt Fine Art</p></font>
+  
+  <font color="#fff"><p class="p2" style="font-size:26px">Inquieres</p></font>
+
+
+<form
+  action="https://formspree.io/f/xldjvykg"
+  method="POST"
+>      
+  <input name="name" type="text" class="feedback-input" placeholder="Name" />   
+  <input name="email" type="text" class="feedback-input" placeholder="Email" />
+  <textarea name="text" class="feedback-input" placeholder="Message"></textarea>
+  <input type="submit" value="SUBMIT"/>
+</form>
+
+
+</div>
 </body></center>
 </html>
-
