@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="R M Hunt">
+    <meta name="description" content="Oil Paintings by R M Hunt">
+    <meta name="keywords" content="oil, paintings, landscapes, nature, traditional, luminist, painter, artist, gallery, sanford gifford, worthington whittredge, kensett">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Cormorant+SC' rel='stylesheet'>
+    <link href="https://roberthunt.com/css/swiffy-slider.min.css" rel="stylesheet">
+    <title>RM Hunt Fine Art Landscape Oil Paintings</title>
+    <script src="https://roberthunt.com/assets/js/swiffy-slider.min.js"></script>
+    <style>
+        body {
+            font-family: 'Cormorant SC';
+            font-size: 1.2rem; /* Relative unit */
+            background-color: rgb(103, 112, 104);
+            background-image: url('blue.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0; /* Remove default margin */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content */
+            text-align: center;
+        }
+
+        hr.line1 {
+            border-top: 1px solid white;
+            width: 20%; /* Kept as is, but could use max-width */
+            margin: 1rem auto;
+        }
+
+        img {
+            max-width: 50%; /* Responsive images */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /*.swiffy-slider {
+            width: 100%; /* Full width */
+            max-width: 1200px; /* Optional: limit max width */
+        }
+
+        .slider-container li {
+            font-size: 1.5rem; /* Relative font size */
+        }
+		*/
+
+        /* Media Queries for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                font-size: 1.8rem; /* Smaller font on mobile */
+            }
+
+            .slider-container li {
+                font-size: 1.2rem;
+            }
+
+            hr.line1 {
+                width: 40%; /* Wider hr on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 1.5rem;
+            }
+
+            .slider-container li {
+                font-size: 1rem;
+            }
+        }
+
+        /* Link styles */
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Optional: hover effect */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #fff;">R M Hunt Fine Art</h1>
+    <hr class="line1">
+    <p style="font-size: 1.5rem; color: #fff;">Selected Works</p>
+    <div class="swiffy-slider slider-nav-chevron slider-indicators-round slider-indicators-outside slider-indicators-highlight slider-indicators-sm slider-nav-animation slider-nav-animation-fadein">
+        <ul class="slider-container">
+            <li>
+                <img src="https://roberthunt.com/images/le.jpg" alt="Lands End Big Sur California Oil Painting" width="700" height="479">
+                <p style="color: #fff;">Lands End | Big Sur California</p>
+            </li>
+            <li>
+                <img src="https://roberthunt.com/images/arch.jpg" alt="Morning at Arches National Park Utah Oil Painting" width="842" height="479">
+                <p style="color: #fff;">Sunrise At Arches National Park</p>
+            </li>
+            <li>
+                <img src="https://roberthunt.com/images/pond.jpg" alt="Robbins California Pond Oil Painting" width="654" height="479">
+                <p style="color: #fff;">Sunset At Robbins Pond</p>
+            </li>
+            <li>
+                <img src="https://roberthunt.com/images/pawnee.jpg" alt="Plains of Pawnee Buttes Colorado Oil Painting" width="918" height="479">
+                <p style="color: #fff;">Pawnee Buttes | Grasslands | Colorado</p>
+            </li>
+        </ul>
+
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+    <hr class="line1">
+    <p style="font-size: 1.25rem; color: #fff;">
+        <a href="https://roberthunt.com/info.html" target="_blank">For More Information Or Feedback</a><br>
+        © 2025 R M Hunt Fine Art
+    </p>
+</body>
+</html>
