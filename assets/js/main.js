@@ -1,173 +1,401 @@
-/*
-	Eventually by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+ /*
+  _____      						 _______ 	     
+ |  __ \  							|_ _ _ _| _  	 	    
+ | |__) | 					     _	   | |	 | |	        
+ |  ___/    ___    __ _    __ _  | |    | |	 | |__     ___ 	 _ __  _ __    ___ 
+ | |\ \    / _ \  / _` |  / _` | | |    | |	 | '_ \   / _ \ | '_ \| '_ \  / _ \
+ | | \ \  |  __/ | (_| | | (_| | | |    | |	 | | | | |  __/ | |  ||  | | |  __/
+ |_|  \ \  \___|  \__, |  \__,_| |_|    |_|   |_| |_|  \___| |_|  ||  |_|  \___|
+                   __/ |              
+                  |___/  		     
+ ================================================================================ */
+ (function($) {
+     "use strict";
 
-(function() {
+     /*
+     MOBILE MENU
+     ================================== */
+     //  Main menu
+     var MainLiDrop = $('.mainmenu li.dropdown,.mainmenu li.sub-dropdown');
+	 var droPBtn = $('<div class="dropdown-btn"></div>');
+     MainLiDrop.append(droPBtn);
+     //Dropdown Button
+     var MainLiDDbtn = $('.mainmenu li.dropdown .dropdown-btn');
+     MainLiDDbtn.on('click', function() {
+         $(this).toggleClass('submenu-icon');
+         $(this).prev('ul').slideToggle(400);
+		 return false;
+     });
+	 
+     /*
+     SEARCH BOX ACTIVE
+     ================================== */
+     var searchBoxI = $('.search-box i');
+     var closeBox = $('#close');
+	 if (searchBoxI.length) {
+		 searchBoxI.on('click', function() {
+			 $(this).parent().toggleClass('active-search');
+			 return false;
+		 });
+	 }
+	 
+     /*
+     STICKY
+     ================================== */
+     var AcSticky = $('.active-sticky');
+     var WinD = $(window);
+     WinD.on('scroll', function() {
+         var scroll = $(window).scrollTop();
+         var AESticky = AcSticky;
+         if (scroll < 1) {
+             AESticky.removeClass("is-sticky");
+         } else {
+             AESticky.addClass("is-sticky");
+         }
+		 return false;
+    });
+    var AcSticky2 = $('.active-sticky-2');
+    var WinD = $(window);
+    WinD.on('scroll', function() {
+         var scroll = $(window).scrollTop();
+         var AESticky2 = AcSticky2;
+         if (scroll < 100) {
+             AESticky2.removeClass("is-sticky");
+         } else {
+             AESticky2.addClass("is-sticky");
+         }
+		 return false;
+    });
+	 
+     /*
+	 Menu A Active Jquery
+     ================================== */
+	 var pgurl = window.location.href.substr(window.location.href
+		.lastIndexOf("/")+1);
+		var aActive = $('ul li a');
+		aActive.each(function(){
+		if($(this).attr("href") === pgurl || $(this).attr("href") === '' )
+		$(this).addClass("active");
+	 })
+	
+     /*
+     ISOTOPE ACTIVE
+     ================================ */
+     // isotope menu
+     var ProjMli = $('.portfolio-menu li');
+     ProjMli.on('click', function() {
+		 var ProjGrid = $('.portfolio-grid');
+         ProjMli.removeClass("active");
+         $(this).addClass("active");
+         var selector = $(this).attr('data-filter');
+         ProjGrid.isotope({
+             filter: selector,
+             animationOptions: {
+                 duration: 750,
+                 easing: 'linear',
+                 queue: false
+             }
+         });
+     });
+	 
+	/*
+	VENOBOX ACTIVE
+	================================ */
+	var VenBOx = $('.venobox');
+	VenBOx.venobox();
+	var VenBOxv = $('.venoboxvid');
+	VenBOxv.venobox();
+	
+     /*
+     SLICK CAROUSEL AS NAV
+     ===================================*/
+     var slickFade = $('#slickFade');
+     var OneITem = $('.one-item');
+     var TesITem = $('.testimonial-item');
+     slickFade.slick({
+         dots: false,
+         arrows: true,
+		 fade: true,
+		 autoplay: true,
+		 speed: 1000,
+         prevArrow: '<i class="prev zmdi zmdi-chevron-left"></i>',
+         nextArrow: '<i class="next zmdi zmdi-chevron-right"></i>'
+     });
+     OneITem.slick({
+         dots: false,
+         arrows: true,
+         prevArrow: '<i class="prev zmdi zmdi-chevron-left"></i>',
+         nextArrow: '<i class="next zmdi zmdi-chevron-right"></i>'
+     });
+	TesITem.slick({
+		 dots: false,
+		 arrows: false,
+		 autoplay: true,
+		 autoplaySpeed: 4000
+	});
+	/*
+	 CounterUp ACTIVE
+	================================ */
+	$('.counter').counterUp({
+		delay: 50,
+		time: 3000
+	});
+	
+	/*
+		YTPlayer ACTIVE CODE
+	================================ */
+	var bgVideo = $('#bgvideo');
+	if ($.fn.mb_YTPlayer) {
+		bgVideo.mb_YTPlayer();
+	}
 
-	"use strict";
+     /*
+     CONTACT FORM VALIDATIONS SETTINGS
+     ========================================*/
+     var CTForm = $('#contact_form');
+     CTForm.validate({
+         onfocusout: false,
+         onkeyup: false,
+         rules: {
+             name: "required",
+             email: {
+                 required: true,
+                 email: true
+             }
+         },
+         errorPlacement: function(error, element) {
+             error.insertBefore(element);
+         },
+         messages: {
+             name: "What's your name?",
+             email: {
+                 required: "What's your email?",
+                 email: "Please, enter a valid email"
+             }
+         },
+         highlight: function(element) {
+             $(element)
+                 .text('').addClass('error')
+         },
+         success: function(element) {
+             element
+                 .text('').addClass('valid')
+         }
+     });
 
-	var	$body = document.querySelector('body');
+     /*
+     CONTACT FORM SCRIPT
+     ========================================*/
+     var CTSubmit = $('#contact_submit');
+     CTForm.submit(function() {
+         // submit the form
+         if ($(this).valid()) {
+             CTSubmit.button('loading');
+             var action = $(this).attr('action');
+             $.ajax({
+                 url: action,
+                 type: 'POST',
+                 data: {
+                     contactname: $('#contact_name').val(),
+                     contactemail: $('#contact_email').val(),
+                     contactmessage: $('#contact_message').val()
+                 },
+                 success: function() {
+                     CTSubmit.button('reset');
+                     CTSubmit.button('complete');
+                 },
+                 error: function() {
+                     CTSubmit.button('reset');
+                     CTSubmit.button('error');
+                 }
+             });
+             // return false to prevent normal browser submit and page navigation 
+         } else {
+             CTSubmit.button('reset')
+         }
+         return false;
+     });
 
-	// Methods/polyfills.
+     /*
+     SCROLLUP
+     ================================ */
+     $.scrollUp({
+         scrollText: '<i class="zmdi zmdi-long-arrow-up"></i>',
+         easingType: 'linear',
+         scrollSpeed: 500,
+         animation: 'slide'
+    });
+	
+     /*
+     LOAD MORE JQUERY
+     ================================== */
+	var list1 = $(".more-load");
+	var numToShow1 = 3;
+	var button1 = $("#load-more-btn");
+	var numInList1 = list1.length;
+	
+	list1.hide();
+	if (numInList1 > numToShow1) {
+		button1.show();
+	}
+	list1.slice(0, numToShow1).show();
+	button1.on('click',function(){
+		var showing1 = list1.filter(':visible').length;
+		list1.slice(showing1 - 1, showing1 + numToShow1).fadeIn();
+		var nowShowing1 = list1.filter(':visible').length;
+		if (nowShowing1 >= numInList1) {
+		button1.hide();
+		}
+		
+		var MasCol = $('.portfolio-grid');
+		MasCol.isotope('layout');
+	});
+	var PoMe_li = $('.portfolio-menu li:not(:first-child)');
+	PoMe_li.on('click',function(){
+		button1.hide();
+	});
+	
+	/*
+	SLIDER PARTICLES.JS
+	================================== */
+    if ( $('#particles-bg').length ) { 
+        particlesJS("particles-bg", {
+          "particles": {
+            "number": {
+              "value": 100,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#666666"
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+              "polygon": {
+                "nb_sides": 5
+              },
+              "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 40,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#666666",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 6,
+              "direction": "none",
+              "random": true,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 600
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 250,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 600,
+                "size": 80,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 200,
+                "duration": 0.4
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true
+        });
+    }
+	
+ /*
+ WINDOW LOAD FUNCTIONS
+ ================================== */
+    WinD.on('load', function() {
+         // Preloader
+         var preeLoad = $('#loading-wrap');
+         preeLoad.fadeOut(1000);
 
-		// classList | (c) @remy | github.com/remy/polyfills | rem.mit-license.org
-			!function(){function t(t){this.el=t;for(var n=t.className.replace(/^\s+|\s+$/g,"").split(/\s+/),i=0;i<n.length;i++)e.call(this,n[i])}function n(t,n,i){Object.defineProperty?Object.defineProperty(t,n,{get:i}):t.__defineGetter__(n,i)}if(!("undefined"==typeof window.Element||"classList"in document.documentElement)){var i=Array.prototype,e=i.push,s=i.splice,o=i.join;t.prototype={add:function(t){this.contains(t)||(e.call(this,t),this.el.className=this.toString())},contains:function(t){return-1!=this.el.className.indexOf(t)},item:function(t){return this[t]||null},remove:function(t){if(this.contains(t)){for(var n=0;n<this.length&&this[n]!=t;n++);s.call(this,n,1),this.el.className=this.toString()}},toString:function(){return o.call(this," ")},toggle:function(t){return this.contains(t)?this.remove(t):this.add(t),this.contains(t)}},window.DOMTokenList=t,n(Element.prototype,"classList",function(){return new t(this)})}}();
+         // isotope fitRows grid
+         var IsoGriddoload = $('.fitRows-grid');
+         IsoGriddoload.isotope({
+             itemSelector: '.grid-item',
+             // layout mode options
+             layoutMode: 'fitRows'
+         });
+         // isotope masonry grid
+         var IsoGriddoload = $('.masonry-grid');
+         IsoGriddoload.isotope({
+             itemSelector: '.grid-item',
+             // layout mode options
+             masonryHorizontal: {
+                 rowHeight: 100
+             }
+         });
+		 
+     });
 
-		// canUse
-			window.canUse=function(p){if(!window._canUse)window._canUse=document.createElement("div");var e=window._canUse.style,up=p.charAt(0).toUpperCase()+p.slice(1);return p in e||"Moz"+up in e||"Webkit"+up in e||"O"+up in e||"ms"+up in e};
-
-		// window.addEventListener
-			(function(){if("addEventListener"in window)return;window.addEventListener=function(type,f){window.attachEvent("on"+type,f)}})();
-
-	// Play initial animations on page load.
-		window.addEventListener('load', function() {
-			window.setTimeout(function() {
-				$body.classList.remove('is-preload');
-			}, 100);
-		});
-
-	// Slideshow Background.
-		(function() {
-
-			// Settings.
-				var settings = {
-
-					// Images (in the format of 'url': 'alignment').
-						images: {
-							'images/pano.jpg': 'center',
-							'images/glacierpoint2.jpg': 'center',
-							'images/nep.jpg': 'center',
-							'images/landsend.jpg': 'center',
-							'images/courthouse1.jpg': 'center'
-						},
-
-					// Delay.
-						delay: 5000
-
-				};
-
-			// Vars.
-				var	pos = 0, lastPos = 0,
-					$wrapper, $bgs = [], $bg,
-					k, v;
-
-			// Create BG wrapper, BGs.
-				$wrapper = document.createElement('div');
-					$wrapper.id = 'bg';
-					$body.appendChild($wrapper);
-
-				for (k in settings.images) {
-
-					// Create BG.
-						$bg = document.createElement('div');
-							$bg.style.backgroundImage = 'url("' + k + '")';
-							$bg.style.backgroundPosition = settings.images[k];
-							$wrapper.appendChild($bg);
-
-					// Add it to array.
-						$bgs.push($bg);
-
-				}
-
-			// Main loop.
-				$bgs[pos].classList.add('visible');
-				$bgs[pos].classList.add('top');
-
-				// Bail if we only have a single BG or the client doesn't support transitions.
-					if ($bgs.length == 1
-					||	!canUse('transition'))
-						return;
-
-				window.setInterval(function() {
-
-					lastPos = pos;
-					pos++;
-
-					// Wrap to beginning if necessary.
-						if (pos >= $bgs.length)
-							pos = 0;
-
-					// Swap top images.
-						$bgs[lastPos].classList.remove('top');
-						$bgs[pos].classList.add('visible');
-						$bgs[pos].classList.add('top');
-
-					// Hide last image after a short delay.
-						window.setTimeout(function() {
-							$bgs[lastPos].classList.remove('visible');
-						}, settings.delay / 2);
-
-				}, settings.delay);
-
-		})();
-
-	// Signup Form.
-		(function() {
-
-			// Vars.
-				var $form = document.querySelectorAll('#signup-form')[0],
-					$submit = document.querySelectorAll('#signup-form input[type="submit"]')[0],
-					$message;
-
-			// Bail if addEventListener isn't supported.
-				if (!('addEventListener' in $form))
-					return;
-
-			// Message.
-				$message = document.createElement('span');
-					$message.classList.add('message');
-					$form.appendChild($message);
-
-				$message._show = function(type, text) {
-
-					$message.innerHTML = text;
-					$message.classList.add(type);
-					$message.classList.add('visible');
-
-					window.setTimeout(function() {
-						$message._hide();
-					}, 3000);
-
-				};
-
-				$message._hide = function() {
-					$message.classList.remove('visible');
-				};
-
-			// Events.
-			// Note: If you're *not* using AJAX, get rid of this event listener.
-				$form.addEventListener('submit', function(event) {
-
-					event.stopPropagation();
-					event.preventDefault();
-
-					// Hide message.
-						$message._hide();
-
-					// Disable submit.
-						$submit.disabled = true;
-
-					// Process form.
-					// Note: Doesn't actually do anything yet (other than report back with a "thank you"),
-					// but there's enough here to piece together a working AJAX submission call that does.
-						window.setTimeout(function() {
-
-							// Reset form.
-								$form.reset();
-
-							// Enable submit.
-								$submit.disabled = false;
-
-							// Show message.
-								$message._show('success', 'Thank you!');
-								//$message._show('failure', 'Something went wrong. Please try again.');
-
-						}, 750);
-
-				});
-
-		})();
-
-})();
+ })(jQuery);
