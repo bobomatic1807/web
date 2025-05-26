@@ -35,7 +35,7 @@
 ================ */
  
  body {
-     font-family: 'Open Sans', sans-serif;
+     font-family: 'Cormorant SC';
      font-size: 14px;
      line-height: 22px;
      font-weight: 400;
@@ -47,7 +47,7 @@
      -webkit-font-smoothing: antialiased;
  }
  html {
-     font-family: 'Open Sans', sans-serif;
+     font-family: 'Cormorant SC';
  }
  html,
  body {
@@ -168,7 +168,7 @@
  h4,
  h5,
  h6 {
-     font-family: 'Open Sans', sans-serif;
+     font-family: 'Cormorant SC', sans-serif;
      font-weight: 300;
      color: #747474;
      margin: 0 0 10px;
