@@ -479,8 +479,8 @@
  @media screen and (max-width: 767px) {
      .ptb-110,
      .ptb-100 {
-         padding-top: 20px;
-         padding-bottom: 20px;
+         padding-top: 10px;
+         padding-bottom: 10px;
      }
      .ptb-340,
      .ptb-220,
