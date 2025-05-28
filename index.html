@@ -1,401 +1,89 @@
-<!DOCTYPE html>
-<html lang="en" >
+<!doctype html>
+<html class="no-js" lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="robots" content="index, follow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R M Hunt Fine Art Landscape Oil Paintings</title>
-<meta name="author" content="R M Hunt Fine Art Paintings">
-<meta name="description" content="Realist Fine Art Landscape Seascape Oil Paintings of America, South America and Europe ">
-<meta name="keywords" content="fine art, oil, paintings, landscapes, seascapes, nature, traditional, luminist, painter, artist, gallery, sanford gifford, worthington whittredge, kensett">
-<link href='https://fonts.googleapis.com/css?family=Cormorant SC' rel='stylesheet'>  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="https://roberthunt.com/css/reset-2.0.min.css">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css'>
-<link rel="apple-touch-icon" sizes="180x180" href="ico/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
-<link rel="manifest" href="ico/site.webmanifest">
-<style>
-hr.line1 {
-  border-top: 1px solid black; width:100%;
-  }
-@font-face {
-  font-family: 'PT Sans Narrow';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/ptsansnarrow/v18/BngRUXNadjH0qYEzV7ab-oWlsYCB.ttf) format('truetype');
-}
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-body {
-  font-family: "PT Sans Narrow", sans-serif;
-  font-weight: 400;
-  background-color: rgb(250, 240, 230); !important;
-}
-a {
-  color: black;
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-  padding: 0 22px;
-}
-img {
-  width: auto;
-  max-width: 100%;
-}
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 0px;
-  padding: 24px 0;
-}
-.gallery__item {
-  flex: 0 1 calc(1290px / 3);
-  padding: 0 10px;
-  margin-bottom: 20px;
-}
-.gallery__item > figure {
-  transition: 0.3s ease-in-out;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)) no-repeat 0 0;
-  background-size: 35%;
-  padding: 14px 0 14px 20px;
-  margin-top: 50px;
-}
-.gallery__item > figure:hover .gallery__image::after {
-  transform: rotateZ(0deg);
-  opacity: 1;
-}
-.gallery__item > figure:hover .gallery__btns {
-  opacity: 1;
-}
-.gallery__image {
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 1px;
-  padding: 10px;
-  margin-top: -50px;
-  transition: 0.3s ease-in-out;
-}
-.gallery__image::after {
-  content: '';
-  background: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  bottom: 18px;
-  left: 18px;
-  opacity: 0;
-  transform: rotate(50deg);
-  transition: 0.5s ease-in-out;
-}
-.gallery__image img {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-.gallery__image .gallery__btns {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: 0.3s ease-in-out;
-}
-.gallery__image .gallery__btns > a {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin-bottom: 10px;
-  text-align: center;
-  padding: 12px 40px;
-  font-size: 12px;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.14rem;
-  border: 1px solid white;
-}
-.gallery__image .gallery__btns > a::after {
-  content: '';
-  position: absolute;
-  left: -200%;
-  top: -50%;
-  width: 150%;
-  height: 200%;
-  z-index: -1;
-  transform: skew(-45deg);
-  background: white;
-  transition: 0.7s all;
-}
-.gallery__image .gallery__btns > a:hover::after {
-  left: -30%;
-}
-.gallery__image .gallery__btns > a:hover {
-  color: #333;
-}
-.gallery__image .gallery__btns > a:last-child {
-  margin-bottom: 0;
-}
-.gallery__description {
-  padding: 8px 14px 9px;
-  margin-left: 36%;
-  font-size: 14px;
-  position: relative;
-  top: 13px;
-  max-width: 250px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 1px;
-}
-.gallery__description h4 {
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.02rem;
-}
-.gallery__description span {
-  color: #ea4c89;
-}
-#one{
-    font-family: 'Cormorant SC';
-    color: #000;
-    font-size: 22px;
-	text-align: left;
-  }
-#two{
-    font-family: 'Cormorant SC';
-    color: #000;
-    font-size: 18px;
-	text-align: center;
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MiniPo is a Minimal Portfolio Template">
+    <meta name="keywords" content="mininal , Personal portfolio template, Personal portfolio, Minimal personal, material design, portfolio, personal">
+    <meta name="author" content="regaltheme.com">
 
-span { font-size: 16px; }
+    <title>Coming Soon || MiniPo</title>
 
- #share-buttons img { width: 25px; padding: 5px; border: 0; box-shadow: 0; display: inline; }
- 
- 
-</style>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-  <script>
-  window.console = window.console || function(t) {};
-</script>
+    <!-- style css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- modernizr js -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
-<body translate="no">
-&ensp;
-  
-  <div class="container">
-  <font color="#000"><p id="one" style="font-size:38px"> R  M Hunt Fine Art <span style="float:right;"><a style="text-decoration: none; color: #000;" href="https://roberthunt.com/about.html"><SPAN STYLE="font-size:18px">About  </span> </a><a style="text-decoration: none; color: #000;" href="https://roberthunt.com/info.html"><SPAN STYLE="font-size:18px">Contact</span></span></a></p></font>
-  <hr class="line1"><br>
-  <font color="#000"><p id="one" style="font-size:18px">Selected Works</p></font>
-    <ul class="gallery">
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/le_t.jpg" alt="Lands End Big Sur California Oil Painting" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/le1.jpg" alt="Lands End Big Sur California Oil Painting" data-fancybox="gallery" data-caption="Caption for single image 1">Lands End <br>Big Sur California</a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/arch_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/arch.jpg" data-fancybox="gallery" data-caption="Caption for single image 2">Morning at Arches National Park</a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/pond_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/pond.jpg" data-fancybox="gallery" data-caption="Caption for single image 3">Twilight at Robbins Creek</a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/sea_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/sea.jpg" data-fancybox="gallery" data-caption="Caption for single image 4">Morning at Ricon del Mar</a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/pawnee_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/pawnee.jpg" data-fancybox="gallery" data-caption="Caption for single image 5">Pawnee Buttes<br> Colorado</a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/yv_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/yv.jpg" data-fancybox="gallery" data-caption="Caption for single image 5">Storm at Dawn<br> Yosemite Valley<br></a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-        <li class="gallery__item">
-            <figure>
-                <div class="gallery__image">
-                    <img src="https://roberthunt.com/images/gp_t.jpg" alt="image" title="image">
-                    <div class="gallery__btns">
-                        <a href="https://roberthunt.com/images/gp.jpg" data-fancybox="gallery" data-caption="Caption for single image 5">Evening at <br> Glacier Point<br></a>
-                        
-                    </div>
-                </div>
-                
-            </figure>
-        </li>
-    </ul>
-	&ensp;<br>
-    <hr class="line1">
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- Loading Bar Start -->
+    <div id="loading-wrap">
+        <div class="loading-effect"></div>
+    </div>
+    <!-- Loading Bar End -->
+    <!-- Loading Bar End -->
+    <!-- Header Section Start -->
+	<div class="coming-header height-100 ptb-30">
+		<div class="d-table">
+			<div class="d-table-cell">
+				<div class="container">
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<div class="v-align">
+								<div class="coming-soon">
+									<div class="logo mb-30">
+										<a href="index.html"><img src="https://roberthunt.com/images/logo1.png" alt="RMH" />
+										</a>
+									</div>
+									<p class="mb-30">We're busy working on the final touches for the new look. Almost ready!</p>
+									<div id="timer">
+										<div id="days"></div>
+										<div id="hours"></div>
+										<div id="minutes"></div>
+										<div id="seconds"></div>
+									</div>
+									<a class="btn venobox mt-50" data-vbtype="iframe" href="contact-robert.html">Contact Us</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-    <div id="share-buttons" align="center">
-	  
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/sharer.php?u=https://roberthunt.com" target="_blank"><img src="https://roberthunt.com/images/fb14.png" alt="Facebook" /></a>
-        <!-- Twitter -->
-        <a href="https://twitter.com/share?url=https://roberthunt.com&text=Fine Art Oil Paintings" target="_blank">
-            <img src="https://roberthunt.com/images/x14.png" alt="Twitter" />
-        </a>
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://roberthunt.com" target="_blank">
-            <img src="https://roberthunt.com/images/in14.png" alt="LinkedIn" />
-        </a>
-		<!-- Pinterest -->
-		<a href="https://api.whatsapp.com/send?text=https://roberthunt.com" target="_blank">
-            <img src="https://roberthunt.com/images/wap15.png" alt="Whatsapp" />
-        </a>
-		<!--Whatsapp-->
-		<a href="https://www.pinterest.com/pin/create/button/?url=https://roberthunt.com" target="_blank">
-            <img src="https://roberthunt.com/images/p14.png" alt="Pinterest" />
-        </a><br><br>
-        
-       
-     
-	 <font color="#000"><p id="two" style="font-size:18px"><font color="#000">&copy; 2025 R M Hunt Fine Art</p></font><br>
-	 
-	 </div>
-
- 
-   
-
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'></script>
-      <script id="rendered-js" >
-$('[data-fancybox="gallery"]').fancybox({
-  // Enable infinite gallery navigation
-  loop: false,
-
-  // What buttons should appear in the top right corner.
-  // Buttons will be created using templates from `btnTpl` option
-  // and they will be placed into toolbar (class="fancybox-toolbar"` element)
-  buttons: [
-  "zoom",
-  "share",
-  "slideShow",
-  "fullScreen",
-  "thumbs",
-  "close"],
-
-
-  // Disable right-click and use simple image protection for images
-  protect: false,
-
-  image: {
-    preload: false },
-
-
-  // Open/close animation type
-  // Possible values:
-  //   false            - disable
-  //   "zoom"           - zoom images from/to thumbnail
-  //   "fade"
-  //   "zoom-in-out"
-  //
-  animationEffect: "circular",
-
-  // Duration in ms for open/close animation
-  animationDuration: 700,
-
-  // Should image change opacity while zooming
-  // If opacity is "auto", then opacity will be changed if image and thumbnail have different aspect ratios
-  zoomOpacity: "auto",
-
-  // Transition effect between slides
-  // Possible values:
-  //   false            - disable
-  //   "fade'
-  //   "slide'
-  //   "circular'
-  //   "tube'
-  //   "zoom-in-out'
-  //   "rotate'
-  //
-  transitionEffect: "slide",
-
-  // Duration in ms for transition animation
-  transitionDuration: 700,
-
-  // Hide browser vertical scrollbars; use at your own risk
-  hideScrollbar: true,
-
-  fullScreen: {
-    autoStart: false },
-
-
-  slideShow: {
-    autoStart: false,
-    speed: 3000 },
-
-
-  thumbs: {
-    autoStart: false, // Display thumbnails on opening
-    hideOnClose: true, // Hide thumbnail grid when closing animation starts
-    parentEl: ".fancybox-container", // Container is injected into this element
-    axis: "y" // Vertical (y) or horizontal (x) scrolling
-  },
-
-  // Use mousewheel to navigate gallery
-  // If 'auto' - enabled for images only
-  wheel: "auto" });
-//# sourceURL=pen.js
-    </script>
-  
+    <!-- Header Section End -->
+	
+    <!-- All JS Here -->
+    <!-- jQuery Latest Version -->
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Isotope -->
+    <script src="assets/js/isotope.pkgd.js"></script>
+    <!-- Validate -->
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <!-- Slick Slider JS -->
+    <script src="assets/js/slick.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="assets/js/plugins.js"></script>
+    <!-- main JS -->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
