@@ -2239,11 +2239,11 @@
  /* Pages Title */
  
  .page-title h1 {
-     color: #737373;
+     color: #4b4a4a;
      display: inline-block;
  }
  .page-title h4 {
-     color: #939393;
+     color: #4b4a4a;
  }
  .blog-area .mb-minus {
      margin-bottom: -30px;
@@ -2933,6 +2933,9 @@
 ---------------------- */
  .portfolio-info h2 {
      color: #4c4c4c;
+ }
+ .portfolio-info h3 {
+     color: #4b4a4a;
  }
  .portfolio-info > p {
      color: #4b4a4a;
