@@ -21,13 +21,13 @@
 	<style>
   body { 
   background-color: rgb(255, 255, 255) !important; 
-  font-family: Cormorant SC;
+  font-family:'Montserrat', Arial, Helvetica, sans-serif;
   }
 form { max-width:420px; margin:50px auto; }
 
 .feedback-input {
   color:blk;
-  font-family: Cormorant SC;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight:500;
   font-size: 18px;
   border-radius: 5px;
@@ -67,11 +67,7 @@ textarea {
 }
 [type="submit"]:hover { background:#9ca095; }
 
-.p2 {
-  font-family: Cormorant SC;
-  font-size: 22px;
-  text-align: center;
-  }
+
 hr.line1 {
   border-top: 1px solid black; width:20%;
   }
@@ -79,12 +75,36 @@ hr.line1 {
 span.email b {
   display: none;
 }
+.form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .honeypot {
+      display: none;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
 </style>
 
 </head>
-
 <body>
-    <!--[if lt IE 8]>
+  <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -171,16 +191,61 @@ span.email b {
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="error-content text-center">
-                        <form
-  action="https://api.mizuforms.com/f/87eaf226-dd04-4277-943e-cbde2e6404f0"
-  method="POST"
->      
-  <input name="name" type="text" class="feedback-input" placeholder="Name" required />   
-  <input name="email" type="text" class="feedback-input" placeholder="Email" required />
-  <input type="hidden" name="_mf-redirectTo" value="https://roberthunt.com/thanks.html" />
-  <textarea name="text" class="feedback-input" placeholder="Message" required /></textarea>
-  <input type="submit" value="Send"/>
-</form><br></p>
+  <form action="https://api.mizuforms.com/f/87eaf226-dd04-4277-943e-cbde2e6404f0" method="POST" id="contactForm">
+    <div class="form-group">
+      
+      <input type="text" id="name" name="name" placeholder="Name" required>
+    </div>
+    <div class="form-group">
+      
+      <input type="email" id="email" name="email" placeholder="Email" required>
+    </div>
+    <div class="form-group">
+      
+      <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+    </div>
+    <!-- field to catch the idiots -->
+    <div class="honeypot">
+      <label for="website">Leave this field empty:</label>
+      <input type="text" id="website" name="website">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const websiteField = document.getElementById('website').value;
+      if (websiteField !== '') {
+        // If honeypot field is filled, assume it's a bot and do nothing
+        return;
+      }
+
+      // Proceed with form submission
+      const form = event.target;
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Redirect to thank you page
+          window.location.href = 'https://roberthunt.com/thanks.html';
+        } else {
+          alert('There was an error submitting the form. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting the form. Please try again.');
+      });
+    });
+  </script>
+<br></p>
                   <center><p>Or send an email to: <span class="email">info@roberthunt<b>.roberthunt</b>.com</span></p></center>
                     </div>
 					
