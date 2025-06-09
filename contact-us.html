@@ -1,6 +1,5 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,14 +16,11 @@
     <!-- style css -->
     <link rel="stylesheet" href="style.css">
     <!-- modernizr js -->
+    <!-- modernizr js -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-	<style>
-  body { 
-  background-color: rgb(255, 255, 255) !important; 
-  font-family:'Montserrat', Arial, Helvetica, sans-serif;
-  }
-form { max-width:420px; margin:50px auto; }
-
+    <style>
+   
+		
 .feedback-input {
   color:blk;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -32,7 +28,7 @@ form { max-width:420px; margin:50px auto; }
   font-size: 18px;
   border-radius: 5px;
   line-height: 22px;
-  background-color:  #d5dbdb;
+  background-color:  #000;
   border:2px solid #fff;
   transition: all 0.3s;
   padding: 13px;
@@ -66,42 +62,85 @@ textarea {
   font-weight:700;
 }
 [type="submit"]:hover { background:#9ca095; }
+        
+		body {
+            font-family: Arial, sans-serif;
+            form { max-width:420px; margin:5px auto;
+            margin: 0 auto;
+            padding: 5px;
+            background-color: #fff;
+        }
+        .form-container {
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #000;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .progress-container {
+            display: none;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #8f9791;
+            border-radius: 4px;
+            transition: width 0.1s ease-in-out;
+        }
+        .progress-bg {
+            background-color: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+        .honeypot {
+            display: none;
+        }
+		span.email b {
+  display: none;
+}
+::placeholder {
+  color: #757575;
+  opacity: 1; /* Firefox */
+}
 
-
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: red;
+}
 hr.line1 {
   border-top: 1px solid black; width:20%;
   }
-  
-span.email b {
-  display: none;
-}
-.form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    .spm {
-      display: none;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-</style>
-
+    </style>
 </head>
 <body>
   <!--[if lt IE 8]>
@@ -118,7 +157,7 @@ span.email b {
     <div id="loading-wrap">
         <div class="loading-effect"></div>
     </div>
-    <!-- Loading Bar End -->
+    
     <!-- Loading Bar End -->
     <!-- Header Section Start -->
        <header class="header-style-1">
@@ -139,14 +178,14 @@ span.email b {
 								<div class="navbar-collapse collapse clearfix">
                                     <ul class="navigation clearfix">
                                         <!-- HOME START -->
-                                        <li><a href="firstpage-b.html">Home</a>
+                                        <li><a href="index.html">Home</a>
                                             
                                         </li>
                                         <!-- HOME END -->
-                                        <li><a href="abouta.html">About</a>
+                                        <li><a href="about.html">About</a>
                                         </li>
                                         <!-- PORTFOLIO START -->
-                                        <li><a href="index-a.html">Selected Works</a></l1>
+                                        <li><a href="selected-works.html">Selected Works</a></l1>
                                             
                                         <!-- PORTFOLIO END -->
                                         
@@ -167,6 +206,7 @@ span.email b {
 	<div class="header-space"></div>
     <!-- Header Section End -->
 	<!-- Breadcrumbs Start -->
+	
 	<div class="pages-header bg-color-1">
 		<div class="container">
 			<div class="row text-center">
@@ -179,69 +219,109 @@ span.email b {
 			</div>
 		</div>
 	</div>
-	<!-- Breadcrumbs End -->
-    <!-- Error Content Section Start -->
-    <div class="error-content-area section">
+	<div class="error-content-area section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="error-content text-center">
-  <form action="https://api.mizuforms.com/f/87eaf226-dd04-4277-943e-cbde2e6404f0" method="POST" id="contactForm">
-    <div class="form-group">
-      
-      <input type="text" id="name" name="name" placeholder="Name" required>
+    <div class="form-container">
+        <h2></h2>
+        <form id="contactForm" action="https://api.mizuforms.com/f/87eaf226-dd04-4277-943e-cbde2e6404f0" method="POST">
+            <div class="form-group">
+                
+                <input type="text" id="name" name="name"  placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                
+                <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <!-- Honeypot field for spam protection -->
+            <div class="honeypot">
+                <label for="website">Leave this field blank:</label>
+                <input type="text" id="website" name="website">
+            </div>
+            <button type="submit">Send Message</button>
+            <div class="error" id="errorMessage">Please fill out all fields correctly.</div>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-      
-      <input type="email" id="email" name="email" placeholder="Email" required>
-    </div>
-    <div class="form-group">
-      
-      <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
-    </div>
-    <!-- field to catch the idiots -->
-    <div class="spm">
-      <label for="website">Leave this field empty:</label>
-      <input type="text" id="website" name="website">
-    </div>
-    <button type="submit">Submit</button>
-  </form>
 
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const websiteField = document.getElementById('website').value;
-      if (websiteField !== '') {
-        // If honeypot field is filled, assume it's a bot and do nothing
-        return;
-      }
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-      // Proceed with form submission
-      const form = event.target;
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Redirect to thank you page
-          window.location.href = 'https://roberthunt.com/thanks.html';
-        } else {
-          alert('There was an error submitting the form. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting the form. Please try again.');
-      });
-    });
-  </script>
-<br></p>
-                  <center><p>Or send an email to: <span class="email">info@roberthunt<b>.roberthunt</b>.com</span></p></center>
+            const form = e.target;
+            const errorMessage = document.getElementById('errorMessage');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const websiteField = document.getElementById('website');
+
+            // Basic spam protection: check honeypot
+            if (websiteField.value !== '') {
+                errorMessage.textContent = 'Spam detected!';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Basic client-side validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                errorMessage.textContent = 'Please fill out all fields correctly.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            // Simulate progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = `${progress}%`;
+                if (progress >= 90) clearInterval(interval);
+            }, 200);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                clearInterval(interval);
+                progressBar.style.width = '100%';
+
+                if (response.ok) {
+                    // Redirect to thank you page
+                    window.location.href = 'https://roberthunt.com/thanks.html';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                clearInterval(interval);
+                progressBar.style.width = '0%';
+                progressContainer.style.display = 'none';
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+<center><p>Or send an email to: <span class="email">info@roberthunt<b>.roberthunt</b>.com</span></p></center>
                     </div><br><br>
 					
                 </div>
@@ -256,7 +336,7 @@ span.email b {
             <div class="row">
                 <div class="col-xs-12">
                     <center><div>
-                        <p>Copyright &copy; 2025 R M Hunt Fine Art.</p>
+                        <p>Copyright &copy; R M Hunt Fine Art.</p>
                     </div></center>
                     
                 </div>
@@ -282,4 +362,6 @@ span.email b {
     <script src="assets/js/main.js"></script>
 </body>
 
+</html>
+</body>
 </html>
