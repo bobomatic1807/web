@@ -186,8 +186,10 @@ span.email b {
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="error-content text-center">
-  <form id="contactForm" action="https://formsubmit.co/44ddf34e0138903dd88ce0be6082294e" method="POST">
+  <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
             <div class="form-group">
+			<!-- Replace with your Access Key -->
+    <input type="hidden" name="access_key" value="89d0e388-601a-4982-a7e6-13dba6a3c9f6">
                 
                 <input type="text" id="name" name="name"  placeholder="Name" required>
             </div>
@@ -196,20 +198,17 @@ span.email b {
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
 			<div class="form-group">
-			<input type="hidden" name="_next" value="https://roberthunt.com/thanks.html">
-			</div>
-			<div class="form-group">
-			<input type="hidden" name="_captcha" value="false">
-			</div>
-            <div class="form-group">
             <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
-			<div class="_honey">
-      
-            <input type="text" name="_honey" style="display:none">
+			<div>
+              <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
             </div>
+			<input type="hidden" name="redirect" value="https://roberthunt.com/thanks.html">
+			<div class="h-captcha" data-captcha="true"></div>
 			<div class="form-group"><button type="submit">Send Message</button></div>
 			</form>
+			<script src="https://web3forms.com/client/script.js" async defer></script>
     <!-- field to catch the idiots 
     <div class="spm">
       <label for="website">Leave this field empty:</label>
