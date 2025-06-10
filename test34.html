@@ -222,49 +222,44 @@ span.email b {
     <textarea id="message" name="message" placeholder="Message" required></textarea>
   </div>
 
-  <!-- reCAPTCHA integration -->
-  <div class="g-recaptcha" data-sitekey="6Le4bsgUAAAAABW0p7MDopMn0R6uj-ZLv3I8rUoZ"></div>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
 
   <!-- Optional redirect URLs -->
   <input type="hidden" name="redirectTo" value="https://roberthunt.com/thanks.html">
+  <div class="form-group captcha">
+            <label for="captcha"></label>
+            <span id="captchaQuestion"></span>
+            <input type="number" id="captcha" name="captcha" required>
+            <input type="hidden" id="captchaAnswer" name="captchaAnswer">
+        </div>
 
   <button type="submit">Send Message</button>
 </form>
 
-  <!--<script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const websiteField = document.getElementById('website').value;
-      if (websiteField !== '') {
-        // If honeypot field is filled, assume it's a bot and do nothing
-        return;
-      }
+  <script>
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const answer = num1 + num2;
+            document.getElementById('captchaQuestion').textContent = `What is ${num1} + ${num2}?`;
+            document.getElementById('captchaAnswer').value = answer;
+        }
 
-      // Proceed with form submission
-      const form = event.target;
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Redirect to thank you page
-          window.location.href = 'https://roberthunt.com/thanks.html';
-        } else {
-          alert('There was an error submitting the form. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting the form. Please try again.');
-      });
-    });
-  </script>-->
+        // Generate CAPTCHA on page load
+        window.onload = generateCaptcha;
+
+        // Optional: Regenerate CAPTCHA on form submission to prevent reuse
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            const userAnswer = parseInt(document.getElementById('captcha').value);
+            const correctAnswer = parseInt(document.getElementById('captchaAnswer').value);
+            if (userAnswer !== correctAnswer) {
+                event.preventDefault();
+                alert('Incorrect CAPTCHA answer. Please try again.');
+                generateCaptcha();
+                document.getElementById('captcha').value = '';
+            }
+        });
+    </script>
 <br></p>
                   <center><p>Or send an email to: <span class="email">info@roberthunt<b>.roberthunt</b>.com</span></p></center>
                     </div><br><br>
