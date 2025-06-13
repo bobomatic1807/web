@@ -87,9 +87,9 @@ img.svg{
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-weight:300;
+	font-weight:700;
 	line-height: 1.3;
-	font-family: Cormorant SC;
+	font-family: var(--font-syne);
 	color: #000;
 	font-variant-numeric: lining-nums proportional-nums;
 }
@@ -374,7 +374,7 @@ h6 { font-size: 16px; }
 .arlo_tm_topbar .logo[data-type="text"] .image{display: none;}
 .arlo_tm_topbar .logo[data-type="text"] .text{display: inline-block;}
 .arlo_tm_topbar .logo .text h3{
-	font-size: 15px;
+	font-size: 25px;
 	font-family: "Archivo Black";
 }
 .arlo_tm_topbar .avatar{
