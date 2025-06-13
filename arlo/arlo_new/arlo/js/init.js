@@ -152,7 +152,7 @@ function arlo_tm_modalbox_news(){
 		var date		= parent.find('.date').text();
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="'+image+'" alt="" /></div>');
 		modalBox.find('.news_popup_informations .image').append('<span class="date">'+date+'</span>');
 		modalBox.find('.news_popup_informations .image').after('<div class="details_news"><div class="meta">'+meta+'</div><div class="title"><h3>'+title+'</h3></div></div>');
 		arlo_tm_data_images();
@@ -179,14 +179,14 @@ function arlo_tm_modalbox_portfolio(){
 	button.on('click',function(){
 		var element 	= jQuery(this);
 		var parent		= element.closest('.inner');
-		var image		= parent.find('.abs_image').data('img-url');
+		var image		= parent.find('.entry .abs_image').data('img-url');
 		var details 	= parent.find('.hidden_content_portfolio').html();
 		var title	 	= parent.find('.entry').data('title');
 		var category	 	= parent.find('.entry').data('category');
 		
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(details);
-		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="'+image+'" alt="" /></div>');
 		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3 class="title">'+title+'</h3><span class="category"><a href="#">'+category+'</a></span></div>');	
 		arlo_tm_data_images();
 		return false;
