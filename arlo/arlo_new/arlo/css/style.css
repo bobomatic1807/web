@@ -444,8 +444,8 @@ h6 { font-size: 16px; }
 .arlo_tm_mobile_menu .logo[data-type="text"] .image{display: none;}
 .arlo_tm_mobile_menu .logo[data-type="text"] .text{display: inline-block;}
 .arlo_tm_mobile_menu .logo .text h3{
-	font-size: 25px;
-	font-family: "Archivo Black";
+	font-size: 18px;
+	font-family: "Cormorant SC";
 }
 .arlo_tm_mobile_menu .avatar{
 	width: 60px;
