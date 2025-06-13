@@ -87,9 +87,9 @@ img.svg{
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-weight:700;
+	font-weight:300;
 	line-height: 1.3;
-	font-family: var(--font-syne);
+	font-family: Cormorant SC;
 	color: #000;
 	font-variant-numeric: lining-nums proportional-nums;
 }
