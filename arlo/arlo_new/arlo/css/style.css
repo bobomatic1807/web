@@ -109,9 +109,7 @@ h6 { font-size: 16px; }
 }
 .arlo_tm_all_wrap,
 .arlo_tm_all_wrap *{
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	   -moz-box-sizing: border-box; /* Firefox, other Gecko */
-			box-sizing: border-box; /* Opera/IE 8+ */
+	box-sizing: border-box;
 }
 .clearfix:after,
 .clearfix:before{
@@ -1455,15 +1453,23 @@ h6 { font-size: 16px; }
 .arlo_tm_contact .form_wrapper textarea:focus,
 .arlo_tm_contact .enter_code input:focus{
 	outline: none;
+	padding: 13px;
+	border: 1px solid #ccc;
+}
+.arlo_tm_contact .form_wrapper input:focus{
+	border: 1px solid #ccc;
+	padding: 13px;
+	outline: none;
 }
 .arlo_tm_contact .form_wrapper textarea{
-	padding: 20px;
+	padding: 0px;
 	height: 120px;
 	background-color: transparent;
 	border: 1px solid rgba(0,0,0,.1);
-	resize: none;
+	resize: vertical;
 	font-family: var(--font-syne);
 	font-size: 15px;
+	width: 400px;
 }
 .arlo_tm_contact #enter_code{
 	width: 100%;
