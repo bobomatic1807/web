@@ -1173,10 +1173,10 @@ h6 { font-size: 16px; }
 	flex-wrap: wrap;
 }
 .arlo_tm_portfolio .portfolio_item li{
-	margin-bottom: 50px;
+	margin-bottom: 15px;
 	float: left;
-	width: 50%;
-	padding-left: 50px;
+	width: 33%;
+	padding-left: 15px;
 }
 .arlo_tm_portfolio .portfolio_item li .inner{
 	width: 100%;
