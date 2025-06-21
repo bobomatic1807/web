@@ -103,6 +103,7 @@ span.email b {
     button:hover {
       background-color: #0056b3;
     }
+	
 </style>
 
 </head>
@@ -189,29 +190,111 @@ span.email b {
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-text-center">
                     <div class="error-content text-center">
-  <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-     <div class="form-group">
-    <!-- Replace with your Access Key -->
-    <input type="hidden" name="access_key" value="4a00bb1e-a441-4290-aaf0-b76e1dc65114">
+  <div class="form_wrapper">
+									<form action="https://api.web3forms.com/submit" method="POST" id="form">
+          <input type="hidden" name="access_key" value="4a00bb1e-a441-4290-aaf0-b76e1dc65114" />
+          <input
+            type="hidden"
+            name="subject"
+            value="New Submission from Web3Forms"
+          />
+          <input type="checkbox" name="botcheck" id="" style="display: none;" />
 
-    <!-- Form Inputs. Each input must have a name="" attribute -->
-    <input type="text" id="name" name="name"  placeholder="Name" required>
-            </div>
-            <div class="form-group">
-                
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            </div>
-			<div class="form-group">
-            <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-			<!-- Honeypot Spam Protection -->
-            <div><input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-            </div>
-			<input type="hidden" name="redirect" value="https://roberthunt.com/thanks.html">
-			
-			<div class="form-group"><button type="submit">Send Message</button></div>
-			</form>
+          <div class="mb-6">
+            
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              required
+              class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+            />
+          </div>
+          <div class="mb-6"><br>
+            
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              required
+              class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+            />
+          </div>
+          
+          <div class="mb-6"><br>
+            
+            <textarea
+              rows="5"
+              name="message"
+              id="message"
+              placeholder="Message"
+              class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-6"><br>
+            <button
+              type="submit"
+              class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none"
+            >
+              Send Message
+            </button>
+          </div>
+          <p class="text-base text-center text-gray-400" id="result"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+const form = document.getElementById("form");
+const result = document.getElementById("result");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  
+  result.innerHTML = "Please wait...";
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: json,
+  })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status == 200) {
+        result.innerHTML = json.message;
+        result.classList.remove("text-gray-500");
+        result.classList.add("text-green-500");
+      } else {
+        console.log(response);
+        result.innerHTML = json.message;
+        result.classList.remove("text-gray-500");
+        result.classList.add("text-red-500");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      result.innerHTML = "Something went wrong!";
+    })
+    .then(function () {
+      form.reset();
+      setTimeout(() => {
+        result.style.display = "none";
+      }, 5000);
+    });
+});
+</script>
 
 			
     
@@ -223,6 +306,7 @@ span.email b {
             </div>
         </div>
     </div>
+	
     <!-- Error Content Section End -->
 	<!--<hr class="devider"/>-->
     <!-- Footer Section Start -->
