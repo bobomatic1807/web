@@ -477,7 +477,7 @@ ul.circled li:before {
 .col-image .bg-wrapper {
     overflow: hidden;
     position: absolute;
-    height: 50%;
+    height: 80%;
     padding: 0px;
     top: 0px;
 }
