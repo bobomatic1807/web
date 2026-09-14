@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — R M Hunt Fine Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eeece6;
+      --ink: #111111;
+      --muted: #262626;
+      --gutter: clamp(1.5rem, 8vw, 9rem);
+      --page: 1480px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .wrap {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      padding: clamp(3.5rem, 8vw, 8rem) 0 1.15rem;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--ink);
+      opacity: .22;
+      margin: 0 0 clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .rule-foot {
+      margin: 0 0 1.15rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.75rem;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav a[aria-current="page"] {
+      color: var(--ink);
+    }
+
+    header {
+      padding: 0;
+      max-width: 42rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 .9rem;
+      font-family: system-ui, sans-serif;
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-family: "Cormorant SC", Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(2rem, 4vw, 2.2rem);
+      line-height: .9;
+      letter-spacing: .02em;
+    }
+
+    .copy {
+      max-width: 52rem;
+      padding-bottom: clamp(2.5rem, 6vw, 5rem);
+      overflow: hidden;
+    }
+
+    .copy img {
+      float: left;
+      width: min(28%, 160px);
+      height: auto;
+      margin: 0 1.75rem 1rem 0;
+    }
+
+    .copy p {
+      margin: 0 0 1.15rem;
+      line-height: 1.7;
+      font-size: 1.08rem;
+    }
+
+    .copy a { color: inherit; }
+
+    .site-footer {
+      padding: 0 0 clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .site-footer .eyebrow {
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .copy img {
+        float: none;
+        display: block;
+        width: min(70%, 180px);
+        margin: 0 0 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="masthead">
+      <header>
+        <p class="eyebrow">Studio</p>
+        <h1>R M Hunt Fine Art</h1>
+        <p class="eyebrow">info@roberthunt.com</p>
+      </header>
+      <nav class="nav">
+        <a href="index.html">Works</a>
+        <a href="about.html" aria-current="page">About</a>
+      </nav>
+    </div>
+
+    <hr class="rule">
+
+    <div class="copy">
+      <img src="https://roberthunt.com/images/mypic.jpg" alt="Robert Hunt">
+      <p>Robert is a Texas-born oil painter whose evocative landscapes capture the sublime beauty and vastness of the American landscape and destinations beyond. Drawing inspiration from historical landscape masters like Sanford Gifford and Frederic Edwin Church, his work blends a reverence for nature’s grandeur with a distinctly personal, emotive touch.</p>
+      <p>Robert brings a fresh perspective shaped by years of experience in large-format photography, with emphasis on meticulous attention to composition, light, and texture.</p>
+      <p>Each painting reflects a deep connection to the land, imbued with the warm hues and rugged spirit of nature, echoing the timeless drama of his artistic forebears. Robert’s paintings invite viewers to pause and immerse themselves in the quiet, sublime magnificence of the natural world.</p>
+    </div>
+
+    <hr class="rule rule-foot">
+
+    <footer class="site-footer">
+      <p class="eyebrow">© 2026 R M Hunt Fine Art. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

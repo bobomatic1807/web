@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>R M Hunt Fine Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eeece6;
+      --ink: #111111;
+      --muted: #262626;
+      --gutter: clamp(1.5rem, 8vw, 9rem);
+      --gap: clamp(.7rem, 1.6vw, 1.25rem);
+      --page: 1480px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .wrap {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      padding: clamp(3.5rem, 8vw, 8rem) 0 1.15rem;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--ink);
+      opacity: .22;
+      margin: 0 0 clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .rule-foot {
+      margin: 0 0 1.15rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.75rem;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav a[aria-current="page"] {
+      color: var(--ink);
+    }
+
+    header {
+      padding: 0;
+      max-width: 42rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 .9rem;
+      font-family: system-ui, sans-serif;
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-family: "Cormorant SC", Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(2rem, 4vw, 2.2rem);
+      line-height: .9;
+      letter-spacing: .02em;
+    }
+
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+      padding-bottom: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .item {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.03);
+      transform-origin: center;
+      transition: transform 1.2s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .item:hover img { transform: scale(1); }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(17, 17, 17, .92);
+      z-index: 40;
+      padding: 4rem var(--gutter);
+    }
+
+    .lightbox.is-open { display: grid; }
+
+    .lightbox img {
+      max-width: min(80vw, 1200px);
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox .close,
+    .lightbox .caption,
+    .lightbox .arrow {
+      font-family: system-ui, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #eeece6;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 1.4rem;
+      right: var(--gutter);
+      font-size: .7rem;
+    }
+
+    .lightbox .caption {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      font-size: .7rem;
+      pointer-events: none;
+    }
+
+    .lightbox .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      letter-spacing: 0;
+      line-height: 1;
+      padding: .4rem;
+      opacity: .75;
+    }
+
+    .lightbox .arrow:hover { opacity: 1; }
+    .lightbox .prev { left: clamp(.6rem, 3vw, 2.5rem); }
+    .lightbox .next { right: clamp(.6rem, 3vw, 2.5rem); }
+
+    .site-footer {
+      padding: 0 0 clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .site-footer .eyebrow { margin: 0; }
+
+    @media (max-width: 980px) {
+      .portfolio { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .portfolio { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="masthead">
+      <header>
+        <p class="eyebrow">Selected Works</p>
+        <h1>R M Hunt Fine Art</h1>
+        <p class="eyebrow">write: info@roberthunt.com</p>
+      </header>
+      <nav class="nav">
+        <a href="index.html" aria-current="page">Works</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+
+    <hr class="rule">
+
+    <div class="portfolio">
+      <button class="item" type="button" data-full="https://picsum.photos/id/1015/1600/1000" data-caption="River canyon">
+        <img src="https://picsum.photos/id/1015/900/900" alt="River canyon">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/1025/900/1400" data-caption="Waiting">
+        <img src="https://picsum.photos/id/1025/900/900" alt="Waiting">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/1018/1600/900" data-caption="Mountain road">
+        <img src="https://picsum.photos/id/1018/900/900" alt="Mountain road">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/1039/1600/1000" data-caption="Forest fall">
+        <img src="https://picsum.photos/id/1039/900/900" alt="Forest fall">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/1043/1600/1100" data-caption="Coastal town">
+        <img src="https://picsum.photos/id/1043/900/900" alt="Coastal town">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/287/900/1400" data-caption="Fogged pines">
+        <img src="https://picsum.photos/id/287/900/900" alt="Fogged pines">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/292/1600/800" data-caption="Open water">
+        <img src="https://picsum.photos/id/292/900/900" alt="Open water">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/365/1600/1000" data-caption="Harbor crates">
+        <img src="https://picsum.photos/id/365/900/900" alt="Harbor crates">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/308/900/1400" data-caption="Desert stair">
+        <img src="https://picsum.photos/id/308/900/900" alt="Desert stair">
+      </button>
+      <button class="item" type="button" data-full="https://picsum.photos/id/433/1600/1000" data-caption="Bear study">
+        <img src="https://picsum.photos/id/433/900/900" alt="Bear study">
+      </button>
+    </div>
+
+    <hr class="rule rule-foot">
+
+    <footer class="site-footer">
+      <p class="eyebrow">© 2026 R M Hunt Fine Art. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="close" id="lightbox-close">Close</button>
+    <button type="button" class="arrow prev" id="lightbox-prev" aria-label="Previous">‹</button>
+    <img id="lightbox-image" alt="">
+    <button type="button" class="arrow next" id="lightbox-next" aria-label="Next">›</button>
+    <p class="caption" id="lightbox-caption"></p>
+  </div>
+
+  <script>
+    const box = document.getElementById('lightbox');
+    const picture = document.getElementById('lightbox-image');
+    const caption = document.getElementById('lightbox-caption');
+    const items = Array.from(document.querySelectorAll('.portfolio button[data-full]'));
+    let index = 0;
+
+    function show(i) {
+      index = (i + items.length) % items.length;
+      const item = items[index];
+      const thumb = item.querySelector('img');
+      picture.src = item.dataset.full;
+      picture.alt = thumb ? thumb.alt : item.dataset.caption;
+      caption.textContent = item.dataset.caption || '';
+    }
+
+    function openLightbox(i) {
+      show(i);
+      box.hidden = false;
+      box.classList.add('is-open');
+    }
+
+    function closeLightbox() {
+      box.classList.remove('is-open');
+      box.hidden = true;
+      picture.removeAttribute('src');
+    }
+
+    document.querySelector('.portfolio').addEventListener('click', function (event) {
+      const item = event.target.closest('button[data-full]');
+      if (!item) return;
+      openLightbox(items.indexOf(item));
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', function (event) {
+      event.stopPropagation();
+      closeLightbox();
+    });
+
+    document.getElementById('lightbox-prev').addEventListener('click', function (event) {
+      event.stopPropagation();
+      show(index - 1);
+    });
+
+    document.getElementById('lightbox-next').addEventListener('click', function (event) {
+      event.stopPropagation();
+      show(index + 1);
+    });
+
+    box.addEventListener('click', function (event) {
+      if (event.target === box) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (!box.classList.contains('is-open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') show(index - 1);
+      if (event.key === 'ArrowRight') show(index + 1);
+    });
+  </script>
+</body>
+</html>
