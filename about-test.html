@@ -12,14 +12,19 @@
       --bg: #eeece6;
       --ink: #111111;
       --muted: #262626;
-      --gutter: clamp(1.5rem, 8vw, 9rem);
+      --gutter: clamp(1.15rem, 5vw, 9rem);
       --page: 1480px;
     }
 
     * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
       min-height: 100vh;
       background: var(--bg);
       color: var(--ink);
@@ -37,7 +42,7 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      padding: clamp(3.5rem, 8vw, 8rem) 0 1.15rem;
+      padding: clamp(2rem, 8vw, 8rem) 0 1.15rem;
     }
 
     .rule {
@@ -47,9 +52,7 @@
       margin: 0 0 clamp(2.5rem, 6vw, 5rem);
     }
 
-    .rule-foot {
-      margin: 0 0 1.15rem;
-    }
+    .rule-foot { margin: 0 0 1.15rem; }
 
     .nav {
       display: flex;
@@ -63,17 +66,12 @@
       flex-shrink: 0;
     }
 
-    .nav a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .nav a[aria-current="page"] {
-      color: var(--ink);
-    }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a[aria-current="page"] { color: var(--ink); }
 
     header {
       padding: 0;
+      min-width: 0;
       max-width: 42rem;
     }
 
@@ -90,8 +88,8 @@
       margin: 0 0 1rem;
       font-family: "Cormorant SC", Georgia, serif;
       font-weight: 200;
-      font-size: clamp(2rem, 4vw, 2.2rem);
-      line-height: .9;
+      font-size: clamp(1.7rem, 6vw, 2.2rem);
+      line-height: .95;
       letter-spacing: .02em;
     }
 
@@ -103,7 +101,7 @@
 
     .copy img {
       float: left;
-      width: min(28%, 160px);
+      width: min(28%, 180px);
       height: auto;
       margin: 0 1.75rem 1rem 0;
     }
@@ -111,24 +109,29 @@
     .copy p {
       margin: 0 0 1.15rem;
       line-height: 1.7;
-      font-size: 1.08rem;
+      font-size: clamp(.98rem, 2.6vw, 1.08rem);
     }
 
     .copy a { color: inherit; }
 
-    .site-footer {
-      padding: 0 0 clamp(2rem, 5vw, 3.5rem);
-    }
+    .site-footer { padding: 0 0 clamp(2rem, 5vw, 3.5rem); }
+    .site-footer .eyebrow { margin: 0; }
 
-    .site-footer .eyebrow {
-      margin: 0;
-    }
+    @media (max-width: 720px) {
+      .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+        padding-top: 1.5rem;
+      }
 
-    @media (max-width: 640px) {
+      .nav { justify-content: flex-start; }
+      header { max-width: none; }
+
       .copy img {
         float: none;
         display: block;
-        width: min(70%, 180px);
+        width: min(46%, 160px);
         margin: 0 0 1.25rem;
       }
     }
@@ -143,8 +146,8 @@
         <p class="eyebrow">info@roberthunt.com</p>
       </header>
       <nav class="nav">
-        <a href="index.html">Works</a>
-        <a href="about.html" aria-current="page">About</a>
+        <a href="index-test.html">Works</a>
+        <a href="about-test.html" aria-current="page">About</a>
       </nav>
     </div>
 
