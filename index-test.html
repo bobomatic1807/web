@@ -46,6 +46,7 @@
       display: flex;
       justify-content: flex-end;
       gap: 1.75rem;
+      padding: 0;
       font-family: system-ui, sans-serif;
       font-size: .68rem;
       letter-spacing: .22em;
@@ -59,7 +60,7 @@
       margin: 0 0 .9rem;
       font-family: system-ui, sans-serif;
       font-size: .7rem;
-      letter-spacing: .22em;
+      letter-spacing: .32em;
       text-transform: uppercase;
       color: var(--muted);
     }
@@ -72,24 +73,24 @@
       letter-spacing: .02em;
     }
     .portfolio {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--gap);
+      columns: 3;
+      column-gap: var(--gap);
       padding-bottom: clamp(2.5rem, 6vw, 5rem);
     }
     .item {
       display: block;
       width: 100%;
-      margin: 0;
+      margin: 0 0 var(--gap);
       padding: 0;
       border: 0;
       background: transparent;
       cursor: zoom-in;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
     }
     .item img {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
     .lightbox {
@@ -134,12 +135,7 @@
       border: 0;
       cursor: pointer;
     }
-    .lightbox .close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: .7rem;
-    }
+    .lightbox .close { position: absolute; top: 1rem; right: 1rem; font-size: .7rem; }
     .lightbox .caption {
       position: absolute;
       bottom: 1rem;
@@ -165,9 +161,7 @@
     .lightbox .next { right: .35rem; }
     .site-footer { padding: 0 0 clamp(2rem, 5vw, 3.5rem); }
     .site-footer .eyebrow { margin: 0; }
-    @media (max-width: 980px) {
-      .portfolio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
+    @media (max-width: 980px) { .portfolio { columns: 2; } }
     @media (max-width: 720px) {
       .masthead {
         flex-direction: column;
@@ -178,9 +172,7 @@
       .nav { justify-content: flex-start; }
       header { max-width: none; }
     }
-    @media (max-width: 560px) {
-      .portfolio { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 560px) { .portfolio { columns: 1; } }
   </style>
 </head>
 <body>
@@ -199,34 +191,34 @@
     <hr class="rule">
     <div class="portfolio">
       <button class="item" type="button" data-full="https://picsum.photos/id/1015/1600/1000" data-caption="River canyon">
-        <img src="https://picsum.photos/id/1015/900/900" alt="River canyon">
+        <img src="https://picsum.photos/id/1015/900/620" alt="River canyon">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1025/900/1400" data-caption="Waiting">
-        <img src="https://picsum.photos/id/1025/900/900" alt="Waiting">
+        <img src="https://picsum.photos/id/1025/700/1100" alt="Waiting">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1018/1600/900" data-caption="Mountain road">
-        <img src="https://picsum.photos/id/1018/900/900" alt="Mountain road">
+        <img src="https://picsum.photos/id/1018/900/560" alt="Mountain road">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1039/1600/1000" data-caption="Forest fall">
-        <img src="https://picsum.photos/id/1039/900/900" alt="Forest fall">
+        <img src="https://picsum.photos/id/1039/900/700" alt="Forest fall">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1043/1600/1100" data-caption="Coastal town">
-        <img src="https://picsum.photos/id/1043/900/900" alt="Coastal town">
+        <img src="https://picsum.photos/id/1043/900/740" alt="Coastal town">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/287/900/1400" data-caption="Fogged pines">
-        <img src="https://picsum.photos/id/287/900/900" alt="Fogged pines">
+        <img src="https://picsum.photos/id/287/700/1100" alt="Fogged pines">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/292/1600/800" data-caption="Open water">
-        <img src="https://picsum.photos/id/292/900/900" alt="Open water">
+        <img src="https://picsum.photos/id/292/900/520" alt="Open water">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/365/1600/1000" data-caption="Harbor crates">
-        <img src="https://picsum.photos/id/365/900/900" alt="Harbor crates">
+        <img src="https://picsum.photos/id/365/900/700" alt="Harbor crates">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/308/900/1400" data-caption="Desert stair">
-        <img src="https://picsum.photos/id/308/900/900" alt="Desert stair">
+        <img src="https://picsum.photos/id/308/700/1100" alt="Desert stair">
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/433/1600/1000" data-caption="Bear study">
-        <img src="https://picsum.photos/id/433/900/900" alt="Bear study">
+        <img src="https://picsum.photos/id/433/900/680" alt="Bear study">
       </button>
     </div>
     <hr class="rule rule-foot">
@@ -248,12 +240,7 @@
     const picture = document.getElementById('lightbox-image');
     const caption = document.getElementById('lightbox-caption');
     const items = Array.from(document.querySelectorAll('.portfolio button[data-full]'));
-    let index = 0;
-    let startX = 0;
-    let startY = 0;
-    let deltaX = 0;
-    let swiping = false;
-    let locked = false;
+    let index = 0, startX = 0, startY = 0, deltaX = 0, swiping = false, locked = false;
 
     function load(i) {
       index = (i + items.length) % items.length;
@@ -265,103 +252,59 @@
       if (thumb && thumb.src) picture.src = thumb.src;
       if (full && full !== picture.src) {
         const hi = new Image();
-        hi.onload = function () {
-          if (items[index] === item) picture.src = full;
-        };
+        hi.onload = function () { if (items[index] === item) picture.src = full; };
         hi.src = full;
       }
       const neighbor = items[(index + 1) % items.length];
-      if (neighbor && neighbor.dataset.full) {
-        const preload = new Image();
-        preload.src = neighbor.dataset.full;
-      }
+      if (neighbor && neighbor.dataset.full) { const preload = new Image(); preload.src = neighbor.dataset.full; }
     }
-
-    function settle(x) {
-      picture.style.transform = 'translateX(' + x + 'px)';
-    }
-
+    function settle(x) { picture.style.transform = 'translateX(' + x + 'px)'; }
     function go(step) {
       if (locked) return;
       locked = true;
       const leave = step > 0 ? -window.innerWidth : window.innerWidth;
-      const enter = -leave;
       picture.classList.remove('dragging');
       settle(leave);
       window.setTimeout(function () {
         load(index + step);
-        settle(enter);
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { settle(0); });
-        });
+        settle(-leave);
+        requestAnimationFrame(function () { requestAnimationFrame(function () { settle(0); }); });
         window.setTimeout(function () { locked = false; }, 480);
       }, 220);
     }
-
-    function openLightbox(i) {
-      load(i);
-      settle(0);
-      box.hidden = false;
-      box.classList.add('is-open');
-    }
-
-    function closeLightbox() {
-      box.classList.remove('is-open');
-      box.hidden = true;
-      settle(0);
-    }
+    function openLightbox(i) { load(i); settle(0); box.hidden = false; box.classList.add('is-open'); }
+    function closeLightbox() { box.classList.remove('is-open'); box.hidden = true; settle(0); }
 
     document.querySelector('.portfolio').addEventListener('click', function (event) {
       const item = event.target.closest('button[data-full]');
       if (!item) return;
       openLightbox(items.indexOf(item));
     });
-
-    document.getElementById('lightbox-close').addEventListener('click', function (event) {
-      event.stopPropagation();
-      closeLightbox();
-    });
-    document.getElementById('lightbox-prev').addEventListener('click', function (event) {
-      event.stopPropagation();
-      go(-1);
-    });
-    document.getElementById('lightbox-next').addEventListener('click', function (event) {
-      event.stopPropagation();
-      go(1);
-    });
+    document.getElementById('lightbox-close').addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
+    document.getElementById('lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); go(-1); });
+    document.getElementById('lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); go(1); });
     box.addEventListener('click', function (event) {
       if (event.target === box || event.target.classList.contains('stage')) closeLightbox();
     });
-
     box.addEventListener('touchstart', function (event) {
       if (!event.changedTouches.length || locked) return;
       startX = event.changedTouches[0].clientX;
       startY = event.changedTouches[0].clientY;
-      deltaX = 0;
-      swiping = true;
-      picture.classList.add('dragging');
+      deltaX = 0; swiping = true; picture.classList.add('dragging');
     }, { passive: true });
-
     box.addEventListener('touchmove', function (event) {
       if (!swiping || !event.changedTouches.length) return;
-      const x = event.changedTouches[0].clientX;
-      const y = event.changedTouches[0].clientY;
-      const dx = x - startX;
-      const dy = y - startY;
+      const dx = event.changedTouches[0].clientX - startX;
+      const dy = event.changedTouches[0].clientY - startY;
       if (Math.abs(dx) < Math.abs(dy)) return;
-      deltaX = dx;
-      settle(dx);
+      deltaX = dx; settle(dx);
     }, { passive: true });
-
     box.addEventListener('touchend', function () {
       if (!swiping) return;
-      swiping = false;
-      picture.classList.remove('dragging');
-      if (Math.abs(deltaX) > 60) go(deltaX < 0 ? 1 : -1);
-      else settle(0);
+      swiping = false; picture.classList.remove('dragging');
+      if (Math.abs(deltaX) > 60) go(deltaX < 0 ? 1 : -1); else settle(0);
       deltaX = 0;
     }, { passive: true });
-
     document.addEventListener('keydown', function (event) {
       if (!box.classList.contains('is-open')) return;
       if (event.key === 'Escape') closeLightbox();
