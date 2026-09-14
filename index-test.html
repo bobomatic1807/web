@@ -12,15 +12,20 @@
       --bg: #eeece6;
       --ink: #111111;
       --muted: #262626;
-      --gutter: clamp(1.5rem, 8vw, 9rem);
+      --gutter: clamp(1.15rem, 5vw, 9rem);
       --gap: clamp(.7rem, 1.6vw, 1.25rem);
       --page: 1480px;
     }
 
     * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
       background: var(--bg);
       color: var(--ink);
       font-family: Georgia, "Times New Roman", serif;
@@ -37,7 +42,7 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      padding: clamp(3.5rem, 8vw, 8rem) 0 1.15rem;
+      padding: clamp(2rem, 8vw, 8rem) 0 1.15rem;
     }
 
     .rule {
@@ -47,15 +52,12 @@
       margin: 0 0 clamp(2.5rem, 6vw, 5rem);
     }
 
-    .rule-foot {
-      margin: 0 0 1.15rem;
-    }
+    .rule-foot { margin: 0 0 1.15rem; }
 
     .nav {
       display: flex;
       justify-content: flex-end;
       gap: 1.75rem;
-      padding: 0;
       font-family: system-ui, sans-serif;
       font-size: .68rem;
       letter-spacing: .22em;
@@ -63,19 +65,10 @@
       flex-shrink: 0;
     }
 
-    .nav a {
-      color: var(--muted);
-      text-decoration: none;
-    }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a[aria-current="page"] { color: var(--ink); }
 
-    .nav a[aria-current="page"] {
-      color: var(--ink);
-    }
-
-    header {
-      padding: 0;
-      max-width: 42rem;
-    }
+    header { padding: 0; min-width: 0; max-width: 42rem; }
 
     .eyebrow {
       margin: 0 0 .9rem;
@@ -90,14 +83,14 @@
       margin: 0 0 1rem;
       font-family: "Cormorant SC", Georgia, serif;
       font-weight: 200;
-      font-size: clamp(2rem, 4vw, 2.2rem);
-      line-height: .9;
+      font-size: clamp(1.7rem, 6vw, 2.2rem);
+      line-height: .95;
       letter-spacing: .02em;
     }
 
     .portfolio {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--gap);
       padding-bottom: clamp(2.5rem, 6vw, 5rem);
     }
@@ -117,12 +110,7 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      transform: scale(1.03);
-      transform-origin: center;
-      transition: transform 1.2s cubic-bezier(.16, 1, .3, 1);
     }
-
-    .item:hover img { transform: scale(1); }
 
     .lightbox {
       position: fixed;
@@ -131,14 +119,14 @@
       place-items: center;
       background: rgba(17, 17, 17, .92);
       z-index: 40;
-      padding: 4rem var(--gutter);
+      padding: 4.5rem 1.25rem 3.5rem;
     }
 
     .lightbox.is-open { display: grid; }
 
     .lightbox img {
-      max-width: min(80vw, 1200px);
-      max-height: 82vh;
+      max-width: min(92vw, 1200px);
+      max-height: 78vh;
       width: auto;
       height: auto;
       object-fit: contain;
@@ -158,19 +146,21 @@
 
     .lightbox .close {
       position: absolute;
-      top: 1.4rem;
-      right: var(--gutter);
+      top: 1rem;
+      right: 1rem;
       font-size: .7rem;
     }
 
     .lightbox .caption {
       position: absolute;
-      bottom: 1.4rem;
+      bottom: 1rem;
       left: 50%;
       transform: translateX(-50%);
       margin: 0;
       font-size: .7rem;
       pointer-events: none;
+      text-align: center;
+      width: 90%;
     }
 
     .lightbox .arrow {
@@ -184,18 +174,25 @@
       opacity: .75;
     }
 
-    .lightbox .arrow:hover { opacity: 1; }
-    .lightbox .prev { left: clamp(.6rem, 3vw, 2.5rem); }
-    .lightbox .next { right: clamp(.6rem, 3vw, 2.5rem); }
+    .lightbox .prev { left: .35rem; }
+    .lightbox .next { right: .35rem; }
 
-    .site-footer {
-      padding: 0 0 clamp(2rem, 5vw, 3.5rem);
-    }
-
+    .site-footer { padding: 0 0 clamp(2rem, 5vw, 3.5rem); }
     .site-footer .eyebrow { margin: 0; }
 
     @media (max-width: 980px) {
-      .portfolio { grid-template-columns: repeat(2, 1fr); }
+      .portfolio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+        padding-top: 1.5rem;
+      }
+      .nav { justify-content: flex-start; }
+      header { max-width: none; }
     }
 
     @media (max-width: 560px) {
@@ -209,11 +206,11 @@
       <header>
         <p class="eyebrow">Selected Works</p>
         <h1>R M Hunt Fine Art</h1>
-        <p class="eyebrow">write: info@roberthunt.com</p>
+        <p class="eyebrow">info@roberthunt.com</p>
       </header>
       <nav class="nav">
         <a href="index.html" aria-current="page">Works</a>
-        <a href="about.html">About</a>
+        <a href="about-test.html">About</a>
       </nav>
     </div>
 
@@ -278,9 +275,22 @@
       index = (i + items.length) % items.length;
       const item = items[index];
       const thumb = item.querySelector('img');
-      picture.src = item.dataset.full;
-      picture.alt = thumb ? thumb.alt : item.dataset.caption;
+      const full = item.dataset.full;
       caption.textContent = item.dataset.caption || '';
+      picture.alt = thumb ? thumb.alt : item.dataset.caption;
+      if (thumb && thumb.src) picture.src = thumb.src;
+      if (full && full !== picture.src) {
+        const hi = new Image();
+        hi.onload = function () {
+          if (items[index] === item) picture.src = full;
+        };
+        hi.src = full;
+      }
+      const next = items[(index + 1) % items.length];
+      if (next && next.dataset.full) {
+        const preload = new Image();
+        preload.src = next.dataset.full;
+      }
     }
 
     function openLightbox(i) {
@@ -292,7 +302,6 @@
     function closeLightbox() {
       box.classList.remove('is-open');
       box.hidden = true;
-      picture.removeAttribute('src');
     }
 
     document.querySelector('.portfolio').addEventListener('click', function (event) {
