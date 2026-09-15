@@ -71,6 +71,12 @@
       font-size: clamp(1.7rem, 6vw, 2.2rem);
       line-height: .95;
       letter-spacing: .02em;
+      animation: title-in 1.1s cubic-bezier(.16, 1, .3, 1) both;
+    }
+    @keyframes title-in {
+      from {opacity: 0; transform: translateX(2.75rem);
+}
+      to { opacity: 1; transform: none; }
     }
     .portfolio {
       columns: 3;
@@ -88,11 +94,7 @@
       break-inside: avoid;
       -webkit-column-break-inside: avoid;
     }
-    .item img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .item img { width: 100%; height: auto; display: block; }
     .lightbox {
       position: fixed;
       inset: 0;
@@ -241,7 +243,6 @@
     const caption = document.getElementById('lightbox-caption');
     const items = Array.from(document.querySelectorAll('.portfolio button[data-full]'));
     let index = 0, startX = 0, startY = 0, deltaX = 0, swiping = false, locked = false;
-
     function load(i) {
       index = (i + items.length) % items.length;
       const item = items[index];
@@ -274,7 +275,6 @@
     }
     function openLightbox(i) { load(i); settle(0); box.hidden = false; box.classList.add('is-open'); }
     function closeLightbox() { box.classList.remove('is-open'); box.hidden = true; settle(0); }
-
     document.querySelector('.portfolio').addEventListener('click', function (event) {
       const item = event.target.closest('button[data-full]');
       if (!item) return;
