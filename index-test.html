@@ -6,9 +6,7 @@
   <title>R M Hunt Fine Art</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #eeece6;
@@ -25,11 +23,7 @@
       color: var(--ink);
       font-family: Georgia, "Times New Roman", serif;
     }
-    .wrap {
-      max-width: var(--page);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
+    .wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
     .masthead {
       display: flex;
       justify-content: flex-end;
@@ -71,9 +65,8 @@
     }
     h1 {
       margin: 0 0 1rem;
-      font-family: "Cinzel", system-ui, sans-serif;
-
-      font-weight: 200;
+      font-family: "Cinzel", serif;
+      font-weight: 400;
       font-size: clamp(1.7rem, 6vw, 2.2rem);
       line-height: .95;
       letter-spacing: .02em;
@@ -83,23 +76,60 @@
       from { opacity: 0; transform: translateX(2.75rem); }
       to { opacity: 1; transform: none; }
     }
-    .portfolio {
-      columns: 3;
-      column-gap: var(--gap);
-      padding-bottom: clamp(2.5rem, 6vw, 5rem);
-    }
+    .portfolio { columns: 3; column-gap: var(--gap); padding-bottom: clamp(2.5rem, 6vw, 5rem); }
     .item {
       display: block;
+      position: relative;
       width: 100%;
       margin: 0 0 var(--gap);
       padding: 0;
       border: 0;
       background: transparent;
       cursor: zoom-in;
+      overflow: hidden;
       break-inside: avoid;
       -webkit-column-break-inside: avoid;
     }
-    .item img { width: 100%; height: auto; display: block; }
+    .item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1);
+      transition: transform .7s cubic-bezier(.16, 1, .3, 1);
+    }
+    .item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(38, 38, 38, .42);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .45s ease;
+    }
+    .item:hover img,
+    .item:focus-visible img { transform: scale(.94); }
+    .item:hover::after,
+    .item:focus-visible::after { opacity: 1; }
+    .item .label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      margin: 0;
+      padding: 0 .6rem;
+      transform: translate(-50%, -50%);
+      font-family: system-ui, sans-serif;
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: #eeece6;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .45s ease;
+    }
+    .item:hover .label,
+    .item:focus-visible .label { opacity: 1; }
     .lightbox {
       position: fixed;
       inset: 0;
@@ -195,33 +225,43 @@
       </div>
       <button class="item" type="button" data-full="https://picsum.photos/id/1015/1600/1000" data-caption="River canyon">
         <img src="https://picsum.photos/id/1015/900/620" alt="River canyon">
+        <span class="label">River canyon</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1025/900/1400" data-caption="Waiting">
         <img src="https://picsum.photos/id/1025/700/1100" alt="Waiting">
+        <span class="label">Waiting</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1018/1600/900" data-caption="Mountain road">
         <img src="https://picsum.photos/id/1018/900/560" alt="Mountain road">
+        <span class="label">Mountain road</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1039/1600/1000" data-caption="Forest fall">
         <img src="https://picsum.photos/id/1039/900/700" alt="Forest fall">
+        <span class="label">Forest fall</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/1043/1600/1100" data-caption="Coastal town">
         <img src="https://picsum.photos/id/1043/900/740" alt="Coastal town">
+        <span class="label">Coastal town</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/287/900/1400" data-caption="Fogged pines">
         <img src="https://picsum.photos/id/287/700/1100" alt="Fogged pines">
+        <span class="label">Fogged pines</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/292/1600/800" data-caption="Open water">
         <img src="https://picsum.photos/id/292/900/520" alt="Open water">
+        <span class="label">Open water</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/365/1600/1000" data-caption="Harbor crates">
         <img src="https://picsum.photos/id/365/900/700" alt="Harbor crates">
+        <span class="label">Harbor crates</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/308/900/1400" data-caption="Desert stair">
         <img src="https://picsum.photos/id/308/700/1100" alt="Desert stair">
+        <span class="label">Desert stair</span>
       </button>
       <button class="item" type="button" data-full="https://picsum.photos/id/433/1600/1000" data-caption="Bear study">
         <img src="https://picsum.photos/id/433/900/680" alt="Bear study">
+        <span class="label">Bear study</span>
       </button>
     </div>
     <hr class="rule rule-foot">
@@ -232,9 +272,7 @@
   <div class="lightbox" id="lightbox" hidden>
     <button type="button" class="close" id="lightbox-close">Close</button>
     <button type="button" class="arrow prev" id="lightbox-prev" aria-label="Previous">‹</button>
-    <div class="stage">
-      <img id="lightbox-image" alt="">
-    </div>
+    <div class="stage"><img id="lightbox-image" alt=""></div>
     <button type="button" class="arrow next" id="lightbox-next" aria-label="Next">›</button>
     <p class="caption" id="lightbox-caption"></p>
   </div>
