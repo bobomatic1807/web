@@ -3,15 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>R M Hunt Fine Art</title>
+  <title>R M Hunt Fine Art | Realistic Oil Landscape Paintings</title>
+  <meta name="description" content="R. M. Hunt is a Texas-born artist making realistic oil landscape paintings of the American West and destinations beyond.">
+  <meta name="author" content="R. M. Hunt">
+  <link rel="canonical" href="https://roberthunt.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="R M Hunt Fine Art">
+  <meta property="og:title" content="R M Hunt Fine Art | Realistic Oil Landscape Paintings">
+  <meta property="og:description" content="Realistic oil landscape paintings by Texas artist R. M. Hunt.">
+  <meta property="og:url" content="https://roberthunt.com/">
+  <meta property="og:image" content="https://roberthunt.com/images/mypic.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="R M Hunt Fine Art | Realistic Oil Landscape Paintings">
+  <meta name="twitter:description" content="Realistic oil landscape paintings by Texas artist R. M. Hunt.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VisualArtwork",
+    "name": "R M Hunt Fine Art",
+    "artform": "Oil painting",
+    "artMedium": "Oil on canvas",
+    "genre": "Realistic landscape",
+    "creator": {
+      "@type": "Person",
+      "name": "R. M. Hunt",
+      "jobTitle": "Artist",
+      "description": "Texas-born oil painter of realistic landscapes.",
+      "url": "https://roberthunt.com/"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #eeece6;
-      --ink: #111111;
-      --muted: #262626;
+      --bg: #1f1f1f;
+      --ink: #888888;
+      --muted: #888888;
       --gutter: clamp(1.15rem, 5vw, 9rem);
       --gap: clamp(.7rem, 1.6vw, 1.25rem);
       --page: 1480px;
@@ -47,6 +76,7 @@
       text-transform: uppercase;
     }
     .nav a { color: var(--muted); text-decoration: none; }
+    a.mail { color: inherit; text-decoration: none; }
     .nav a[aria-current="page"] { color: var(--ink); }
     .intro {
       break-inside: avoid;
@@ -228,7 +258,7 @@
         <header>
           <p class="eyebrow">Selected Works</p>
           <h1>R M Hunt Fine Art</h1>
-          <p class="eyebrow">info@roberthunt.com</p>
+          <p class="eyebrow"><a class="mail" id="studio-mail" href="#">write the studio</a></p>
         </header>
       </div>
       <button class="item" type="button" data-full="https://picsum.photos/id/1015/1600/1000" data-caption="River canyon">
@@ -285,6 +315,16 @@
     <p class="caption" id="lightbox-caption"></p>
   </div>
   <script>
+    (function () {
+      const user = 'info';
+      const host = 'roberthunt.com';
+      const el = document.getElementById('studio-mail');
+      if (!el) return;
+      const addr = user + '@' + host;
+      el.href = 'mailto:' + addr;
+      el.textContent = addr;
+    })();
+
     const box = document.getElementById('lightbox');
     const picture = document.getElementById('lightbox-image');
     const caption = document.getElementById('lightbox-caption');
