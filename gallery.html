@@ -298,17 +298,77 @@
     .lb .next { right: 16px; top: 50%; transform: translateY(-50%); }
     .lb button:hover { background: rgba(255,255,255,0.22); }
 
-    @media (max-width: 720px) {
-      .scroller { height: 68vh; padding: 0 18px; }
-      .panel.intro { width: 78vw; }
-      .panel.about {
-        width: 88vw;
-        min-width: 88vw;
-        overflow-y: auto;
+    @media (max-width: 736px) {
+      html, body { height: auto; }
+      body { overflow: auto; }
+
+      .page {
+        height: auto;
+        min-height: 100%;
+        padding: 20px 16px 48px;
       }
-      .panel.about .portrait { width: 110px; margin-right: 16px; }
-      .tile, .tile.wide, .stack { width: 78vw; min-width: 78vw; }
+
+      .stage {
+        display: block;
+        height: auto;
+      }
+
       .nav-btn { display: none; }
+
+      .scroller {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding: 0;
+        cursor: default;
+        box-shadow: var(--shadow);
+      }
+
+      .panel,
+      .tile,
+      .tile.wide,
+      .stack,
+      .panel.intro,
+      .panel.about {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto;
+        box-shadow: none;
+      }
+
+      .panel.intro {
+        min-height: 42vh;
+        padding: 40px 28px;
+      }
+
+      .tile img {
+        height: 72vw;
+        min-height: 260px;
+        max-height: 520px;
+        transform: none;
+      }
+
+      .tile:hover img { transform: none; }
+
+      .stack {
+        min-height: 0;
+        height: auto;
+      }
+
+      .stack .tile img {
+        height: 48vw;
+        min-height: 160px;
+      }
+
+      .panel.about {
+        min-height: auto;
+        padding: 32px 22px 40px;
+      }
+
+      .panel.about .portrait { width: 120px; margin: 4px 16px 8px 0; }
+
       .lb { padding: 64px 12px 72px; }
     }
   </style>
@@ -423,9 +483,14 @@
       var inertiaId = 0;
       var velocity = 0;
 
+      function isVertical() {
+        return window.matchMedia("(max-width: 736px)").matches;
+      }
+
       function step() { return Math.round(scroller.clientWidth * 0.7); }
 
       function glide(px) {
+        if (isVertical()) return;
         scroller.scrollTo({ left: scroller.scrollLeft + px, behavior: "smooth" });
       }
 
@@ -433,6 +498,7 @@
       next.addEventListener("click", function () { glide(step()); });
 
       scroller.addEventListener("wheel", function (e) {
+        if (isVertical()) return;
         var dx = e.deltaX;
         var dy = e.deltaY;
         if (Math.abs(dx) > Math.abs(dy)) return;
@@ -465,6 +531,7 @@
       }
 
       scroller.addEventListener("pointerdown", function (e) {
+        if (isVertical()) return;
         if (e.pointerType === "mouse" && e.button !== 0) return;
         if (e.target.closest && e.target.closest("a.email, .about a")) return;
         stopInertia();
