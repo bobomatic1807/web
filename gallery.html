@@ -110,7 +110,7 @@
 
     .panel.intro h2 {
       font-family: "Cinzel", "Times New Roman", serif;
-      font-size: clamp(36px, 4.6vw, 58px);
+      font-size: clamp(36px, 4.6vw, 50px);
       font-weight: 500;
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -134,7 +134,10 @@
     }
 
     .panel.intro a.email {
-      margin-top: 8px;
+      margin-top: 2.25em;
+      padding-top: 0.4em;
+      border-top: 1px solid rgba(255,255,255,0.28);
+      width: fit-content;
       color: #c8c4bf;
       text-decoration: none;
       font-size: 14px;
@@ -386,8 +389,8 @@
       <div class="scroller" id="scroller">
         <section class="panel intro">
           <h2>R M Hunt</h2>
-          <p class="tag">Fine Art</p>
-          <a class="email" href="mailto:info@roberthunt.com">info@roberthunt.com</a>
+          <p class="tag">Fine Art | Selected Works</p>
+          <a class="email" href="#" data-user="info" data-host="roberthunt" data-tld="com"></a>
         </section>
 
         <a class="panel tile wide" href="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Portrait — window light">
@@ -469,6 +472,12 @@
 
   <script>
     (function () {
+      document.querySelectorAll("a.email").forEach(function (a) {
+        var addr = a.getAttribute("data-user") + String.fromCharCode(64) + a.getAttribute("data-host") + "." + a.getAttribute("data-tld");
+        a.setAttribute("href", "mailto:" + addr);
+        a.textContent = addr;
+      });
+
       const scroller = document.getElementById("scroller");
       const prev = document.querySelector(".nav-btn.prev");
       const next = document.querySelector(".nav-btn.next");
