@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R M Hunt — Fine Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-1: #f3e9ee;
+      --bg-2: #e8dfe8;
+      --bg-3: #f7efe6;
+      --ink: #4a3f4a;
+      --muted: rgba(74, 63, 74, 0.72);
+      --panel: linear-gradient(135deg, #c9a0c4 0%, #e38a8a 48%, #f3c9a0 100%);
+      --shadow: 0 30px 80px rgba(80, 50, 70, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, #fff7f4 0%, transparent 55%),
+        radial-gradient(900px 500px at 90% 100%, #efe6f4 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(72px, 14vh, 128px) 0;
+    }
+
+    .stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 0;
+      background: #fff;
+      color: #7a5d86;
+      box-shadow: 0 10px 30px rgba(70, 40, 70, 0.16);
+      cursor: pointer;
+      display: none;
+      place-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-btn:hover { transform: translateY(-50%) scale(1.06); }
+    .nav-btn.prev { left: clamp(10px, 2vw, 28px); }
+    .nav-btn.next { right: clamp(10px, 2vw, 28px); }
+    .nav-btn svg { width: 18px; height: 18px; }
+
+    .scroller {
+      width: 100%;
+      height: min(52vh, 480px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex;
+      align-items: stretch;
+      padding: 0 clamp(56px, 8vw, 110px);
+      cursor: grab;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      scroll-behavior: auto;
+      touch-action: pan-x;
+    }
+
+    .scroller::-webkit-scrollbar { display: none; }
+    .scroller.is-dragging { cursor: grabbing; user-select: none; }
+
+    .panel {
+      flex: 0 0 auto;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .panel.intro {
+      width: min(38vw, 460px);
+      min-width: 260px;
+      background: #2b2b2b;
+      color: #c8c4bf;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(28px, 4vw, 56px);
+    }
+
+    .panel.intro h2 {
+      font-family: "Cinzel", "Times New Roman", serif;
+      font-size: 46px;
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      color: #ece8e2;
+      display: inline-block;
+      width: fit-content;
+      border-bottom: 1px solid rgba(255,255,255,0.28);
+      padding-bottom: 0.12em;
+      margin-bottom: 0.28em;
+    }
+
+    .panel.intro p.tag {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(15px, 1.4vw, 18px);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #c8c4bf;
+    }
+
+    .panel.intro a.email,
+    .panel.about a.email {
+      margin: 0;
+      width: fit-content;
+      color: #c8c4bf;
+      text-decoration: none;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .panel.intro a.email:hover,
+    .panel.about a.email:hover { text-decoration: underline; }
+
+    .panel.intro .intro-foot,
+    .panel.about .intro-foot {
+      position: absolute;
+      left: clamp(28px, 4vw, 56px);
+      right: clamp(28px, 4vw, 56px);
+      bottom: 22px;
+    }
+
+    .panel.intro .copyright,
+    .panel.about .copyright {
+      margin: 0.55em 0 0;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(200, 196, 191, 0.72);
+      line-height: 1.3;
+    }
+
+    .panel.about {
+      width: min(68vw, 860px);
+      min-width: 320px;
+      background: #2b2b2b;
+      color: #c8c4bf;
+      display: block;
+      padding: clamp(24px, 3vw, 48px);
+      padding-bottom: 88px;
+      overflow: auto;
+    }
+
+    .panel.about .portrait {
+      float: left;
+      width: 148px;
+      shape-outside: inset(0);
+      margin: 4px 22px 10px 0;
+    }
+
+    .panel.about .portrait img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: grayscale(1);
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    .panel.about h2 {
+      font-family: "Cinzel", "Times New Roman", serif;
+      font-size: clamp(26px, 2.6vw, 38px);
+      font-weight: 500;
+      color: #ece8e2;
+      letter-spacing: 0.04em;
+    }
+
+    .panel.about hr {
+      width: 48px;
+      border: 0;
+      border-top: 1px solid rgba(255,255,255,0.22);
+      margin: 12px 0 14px;
+    }
+
+    .panel.about p {
+      font-weight: 300;
+      line-height: 1.55;
+      font-size: clamp(13px, 1.15vw, 15.5px);
+      margin-bottom: 0.85em;
+    }
+
+    .panel.about p:last-child { margin-bottom: 0; }
+
+    .tile {
+      width: min(38vw, 460px);
+      min-width: 220px;
+      background: #1c1418;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+
+    .tile.wide { width: min(52vw, 720px); min-width: 280px; }
+
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.7s ease, filter 0.4s ease;
+      filter: saturate(0.92) contrast(1.02);
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    .tile:hover img { transform: scale(1.07); filter: saturate(1.05) contrast(1.05); }
+
+    .tile .cap {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 48px 22px 18px;
+      background: linear-gradient(transparent, rgba(20,10,16,0.62));
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tile:hover .cap, .tile:focus-visible .cap { opacity: 1; }
+
+    .stack {
+      width: min(38vw, 460px);
+      min-width: 220px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .stack .tile { width: 100%; min-width: 0; height: 100%; position: relative; overflow: hidden; }
+
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(6, 4, 6, 0.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 72px;
+    }
+
+    .lb.open { display: flex !important; }
+
+    .lb img {
+      max-width: min(92vw, 1200px);
+      max-height: 82vh;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      pointer-events: none;
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+      will-change: transform;
+    }
+
+    .lb.swiping img { transition: none; }
+
+    .lb .meta {
+      position: absolute;
+      left: 0; right: 0; bottom: 18px;
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .lb button {
+      position: absolute;
+      border: 0;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+    }
+
+    .lb .close { top: 18px; right: 18px; }
+    .lb .prev { left: 16px; top: 50%; transform: translateY(-50%); }
+    .lb .next { right: 16px; top: 50%; transform: translateY(-50%); }
+    .lb button:hover { background: rgba(255,255,255,0.22); }
+
+    @media (max-width: 736px) {
+      html, body {
+        height: auto !important;
+        min-height: 100%;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+      }
+
+      body { overflow: auto !important; }
+
+      .page {
+        height: auto !important;
+        min-height: 100%;
+        padding: 36px 16px 64px;
+        overflow: visible;
+      }
+
+      .stage {
+        display: block;
+        height: auto;
+        overflow: visible;
+      }
+
+      .nav-btn { display: none; }
+
+      .scroller {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0;
+        cursor: default;
+        box-shadow: var(--shadow);
+        touch-action: pan-y;
+      }
+
+      .panel,
+      .tile,
+      .tile.wide,
+      .stack,
+      .panel.intro,
+      .panel.about {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto;
+        box-shadow: none;
+      }
+
+      .panel.intro {
+        min-height: 0;
+        padding: 40px 28px 28px;
+      }
+
+      .panel.intro .intro-foot,
+      .panel.about .intro-foot {
+        position: static;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin-top: 32px;
+      }
+
+      .tile img {
+        height: 72vw;
+        min-height: 260px;
+        max-height: 520px;
+        transform: none;
+      }
+
+      .tile:hover img { transform: none; }
+
+      .stack {
+        min-height: 0;
+        height: auto;
+      }
+
+      .stack .tile img {
+        height: 48vw;
+        min-height: 160px;
+      }
+
+      .panel.about {
+        min-height: auto;
+        padding: 32px 22px 28px;
+        overflow: visible;
+      }
+
+      .panel.about .portrait { width: 120px; margin: 4px 16px 8px 0; }
+
+      .lb { padding: 64px 12px 72px; }
+      .lb .prev,
+      .lb .next { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="stage">
+      <button class="nav-btn prev" type="button" aria-label="Scroll left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="nav-btn next" type="button" aria-label="Scroll right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="scroller" id="scroller">
+        <section class="panel intro">
+          <h2>R M Hunt</h2>
+          <p class="tag">Fine Art | Selected Works</p>
+          <div class="intro-foot">
+            <a class="email" href="#" data-user="info" data-host="roberthunt" data-tld="com"></a>
+            <p class="copyright">&copy; All rights reserved R M Hunt Fine Art</p>
+          </div>
+        </section>
+
+        <a class="panel tile" href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Valley at first light">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Mountain valley" />
+          <span class="cap">Landscape</span>
+        </a>
+
+        <a class="panel tile wide" href="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Portrait — window light">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Portrait of a woman" />
+          <span class="cap">Portrait</span>
+        </a>
+
+        <div class="panel stack">
+          <a class="panel tile" href="https://roberthunt.com/images/girl-france.jpg" data-caption="The Mountains of Menzenc">
+          <img src="https://roberthunt.com/images/girl-france-frame.jpg" alt="The Mountains of Menzenc" />
+          <span class="cap">The Mountains of Menzenc</span>
+        </a>
+          <a class="tile" href="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-caption="Forest path">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&amp;fit=crop&amp;w=700&amp;q=70" alt="Forest" />
+            <span class="cap">Forest</span>
+          </a>
+          <a class="tile" href="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-caption="Studio portrait">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=700&amp;q=70" alt="Studio portrait" />
+            <span class="cap">Studio</span>
+          </a>
+          <a class="tile" href="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-caption="Cabin by the lake">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=700&amp;q=70" alt="Lake cabin" />
+            <span class="cap">Lake</span>
+          </a>
+        </div>
+
+        <a class="panel tile wide" href="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Desert road">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Desert" />
+          <span class="cap">Desert</span>
+        </a>
+
+        <a class="panel tile" href="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Night mountains">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Night mountains" />
+          <span class="cap">Night</span>
+        </a>
+
+        <a class="panel tile" href="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Sneakers">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Sneakers" />
+          <span class="cap">Still life</span>
+        </a>
+
+        <a class="panel tile wide" href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-caption="Ocean morning">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Beach" />
+          <span class="cap">Ocean</span>
+        </a>
+
+        <section class="panel about">
+          <h2>About</h2>
+          <hr />
+          <div class="portrait">
+            <img src="https://roberthunt.com/images/mypic.jpg" alt="R. M. Hunt, oil landscape painter" />
+          </div>
+          <p>Robert is a Texas-born oil painter whose evocative landscapes capture the sublime beauty and vastness of the American landscape and destinations beyond. Drawing inspiration from historical landscape masters like Sanford Gifford and Frederic Edwin Church, his work blends a reverence for nature’s grandeur with a distinctly personal, emotive touch.</p>
+          <p>Robert brings a fresh perspective shaped by years of experience in large-format photography, with emphasis on meticulous attention to composition, light, and texture.</p>
+          <p>Each painting reflects a deep connection to the land, imbued with the warm hues and rugged spirit of nature, echoing the timeless drama of his artistic forebears. Robert’s paintings invite viewers to pause and immerse themselves in the quiet, sublime magnificence of the natural world.</p>
+          <div class="intro-foot">
+            <a class="email" href="#" data-user="info" data-host="roberthunt" data-tld="com"></a>
+            <p class="copyright">&copy; All rights reserved R M Hunt Fine Art</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="lb" id="lightbox" aria-hidden="true">
+    <button class="close" type="button" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button class="prev" type="button" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <img alt="" />
+    <button class="next" type="button" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="meta"></div>
+  </div>
+
+  <script>
+    (function () {
+      document.querySelectorAll("a.email").forEach(function (a) {
+        var addr = a.getAttribute("data-user") + String.fromCharCode(64) + a.getAttribute("data-host") + "." + a.getAttribute("data-tld");
+        a.setAttribute("href", "mailto:" + addr);
+        a.textContent = addr;
+      });
+
+      const scroller = document.getElementById("scroller");
+      const prev = document.querySelector(".nav-btn.prev");
+      const next = document.querySelector(".nav-btn.next");
+      const items = Array.prototype.slice.call(document.querySelectorAll(".tile"));
+      const lb = document.getElementById("lightbox");
+      const lbImg = lb.querySelector("img");
+      const lbMeta = lb.querySelector(".meta");
+      let index = 0;
+
+      var dragging = false;
+      var moved = 0;
+      var inertiaId = 0;
+      var velocity = 0;
+
+      function isVertical() {
+        return window.matchMedia("(max-width: 736px)").matches;
+      }
+
+      function step() { return Math.round(scroller.clientWidth * 0.7); }
+
+      function glide(px) {
+        if (isVertical()) return;
+        scroller.scrollTo({ left: scroller.scrollLeft + px, behavior: "smooth" });
+      }
+
+      prev.addEventListener("click", function () { glide(-step()); });
+      next.addEventListener("click", function () { glide(step()); });
+
+      scroller.addEventListener("wheel", function (e) {
+        if (isVertical()) return;
+        var dx = e.deltaX;
+        var dy = e.deltaY;
+        if (e.deltaMode === 1) { dx *= 16; dy *= 16; }
+        if (Math.abs(dx) > Math.abs(dy)) return;
+        e.preventDefault();
+        scroller.scrollLeft += dy;
+        velocity = velocity * 0.45 + dy * 0.38;
+        if (!inertiaId) inertiaId = requestAnimationFrame(inertia);
+      }, { passive: false });
+
+      var pointerId = null;
+      var startX = 0;
+      var startLeft = 0;
+      var startTarget = null;
+      var lastX = 0;
+      var lastT = 0;
+
+      function stopInertia() {
+        if (inertiaId) cancelAnimationFrame(inertiaId);
+        inertiaId = 0;
+        velocity = 0;
+      }
+
+      function inertia() {
+        if (isVertical() || dragging || Math.abs(velocity) < 0.18) {
+          inertiaId = 0;
+          velocity = 0;
+          return;
+        }
+        scroller.scrollLeft += velocity;
+        velocity *= 0.952;
+        inertiaId = requestAnimationFrame(inertia);
+      }
+
+      scroller.addEventListener("pointerdown", function (e) {
+        if (isVertical()) return;
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        if (e.target.closest && e.target.closest("a.email, .about a")) return;
+        stopInertia();
+        pointerId = e.pointerId;
+        dragging = false;
+        startX = lastX = e.clientX;
+        startLeft = scroller.scrollLeft;
+        moved = 0;
+        startTarget = e.target;
+        lastT = performance.now();
+      });
+
+      scroller.addEventListener("pointermove", function (e) {
+        if (pointerId !== e.pointerId) return;
+        var dx = e.clientX - startX;
+        moved = Math.abs(dx);
+        if (!dragging && moved > 5) {
+          dragging = true;
+          scroller.classList.add("is-dragging");
+          try { scroller.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+        if (dragging) {
+          var now = performance.now();
+          var dt = Math.max(8, now - lastT);
+          velocity = (lastX - e.clientX) / dt * 16.67;
+          lastX = e.clientX;
+          lastT = now;
+          scroller.scrollLeft = startLeft - dx;
+        }
+      });
+
+      function endPointer(e) {
+        if (pointerId !== e.pointerId) return;
+        var wasDragging = dragging;
+        var targetEl = startTarget;
+        pointerId = null;
+        dragging = false;
+        startTarget = null;
+        scroller.classList.remove("is-dragging");
+        if (wasDragging) {
+          velocity *= 1.35;
+          if (Math.abs(velocity) > 0.35) {
+            if (!inertiaId) inertiaId = requestAnimationFrame(inertia);
+          }
+          return;
+        }
+        if (moved > 8) return;
+        var tile = targetEl && targetEl.closest ? targetEl.closest("a.tile") : null;
+        if (!tile) return;
+        var i = items.indexOf(tile);
+        if (i >= 0) open(i);
+      }
+
+      scroller.addEventListener("pointerup", endPointer);
+      scroller.addEventListener("pointercancel", endPointer);
+
+      function open(i) {
+        if (i < 0 || i >= items.length) return;
+        index = i;
+        var el = items[index];
+        lbImg.src = el.getAttribute("href");
+        var thumb = el.querySelector("img");
+        lbImg.alt = thumb ? thumb.alt : "";
+        lbMeta.textContent = el.getAttribute("data-caption") || "";
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function close() {
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.removeAttribute("src");
+        document.body.style.overflow = "";
+      }
+
+      function show(dir) {
+        open((index + dir + items.length) % items.length);
+      }
+
+      items.forEach(function (el, i) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (moved > 8) return;
+          open(i);
+        });
+      });
+
+      lb.querySelector(".close").addEventListener("click", function (e) { e.stopPropagation(); close(); });
+      lb.querySelector(".prev").addEventListener("click", function (e) { e.stopPropagation(); show(-1); });
+      lb.querySelector(".next").addEventListener("click", function (e) { e.stopPropagation(); show(1); });
+      lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+
+      document.addEventListener("keydown", function (e) {
+        if (!lb.classList.contains("open")) {
+          if (e.key === "ArrowLeft") glide(-step());
+          if (e.key === "ArrowRight") glide(step());
+          return;
+        }
+        if (e.key === "Escape") close();
+        if (e.key === "ArrowLeft") show(-1);
+        if (e.key === "ArrowRight") show(1);
+      });
+
+      var lbStartX = 0;
+      var lbStartY = 0;
+      var lbDX = 0;
+      var lbSwiping = false;
+      var lbLocked = false;
+      var lbBusy = false;
+
+      function resetLbPos() {
+        lbImg.style.transform = "translateX(0)";
+        lbImg.style.opacity = "1";
+      }
+
+      function slideTo(dir) {
+        if (lbBusy) return;
+        lbBusy = true;
+        var off = (dir > 0 ? -1 : 1) * Math.round(window.innerWidth * 0.72);
+        lb.classList.remove("swiping");
+        lbImg.style.transition = "";
+        lbImg.style.transform = "translateX(" + off + "px)";
+        lbImg.style.opacity = "0";
+        window.setTimeout(function () {
+          show(dir);
+          lbImg.style.transition = "none";
+          lbImg.style.transform = "translateX(" + (-off) + "px)";
+          lbImg.style.opacity = "0";
+          void lbImg.offsetWidth;
+          lbImg.style.transition = "";
+          resetLbPos();
+          window.setTimeout(function () { lbBusy = false; }, 280);
+        }, 220);
+      }
+
+      lb.addEventListener("touchstart", function (e) {
+        if (!lb.classList.contains("open") || lbBusy) return;
+        lbStartX = e.changedTouches[0].clientX;
+        lbStartY = e.changedTouches[0].clientY;
+        lbDX = 0;
+        lbSwiping = true;
+        lbLocked = false;
+        lb.classList.add("swiping");
+      }, { passive: true });
+
+      lb.addEventListener("touchmove", function (e) {
+        if (!lbSwiping || lbBusy) return;
+        var x = e.changedTouches[0].clientX;
+        var y = e.changedTouches[0].clientY;
+        var dx = x - lbStartX;
+        var dy = y - lbStartY;
+        if (!lbLocked) {
+          if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+          lbLocked = Math.abs(dx) > Math.abs(dy);
+          if (!lbLocked) {
+            lbSwiping = false;
+            lb.classList.remove("swiping");
+            resetLbPos();
+            return;
+          }
+        }
+        e.preventDefault();
+        lbDX = dx;
+        lbImg.style.transform = "translateX(" + dx + "px)";
+        lbImg.style.opacity = String(Math.max(0.35, 1 - Math.abs(dx) / 420));
+      }, { passive: false });
+
+      lb.addEventListener("touchend", function () {
+        if (!lbSwiping) return;
+        lbSwiping = false;
+        lb.classList.remove("swiping");
+        if (Math.abs(lbDX) > 56) {
+          slideTo(lbDX < 0 ? 1 : -1);
+        } else {
+          lbImg.style.transition = "";
+          resetLbPos();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
